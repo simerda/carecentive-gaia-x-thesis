@@ -1,4 +1,4 @@
-\documentclass[12pt,oneside,reqno,a4paper]{article}
+\documentclass[12pt,twoside,reqno,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsthm}     % ams stuff should be before font loading
 \usepackage{lmodern}
@@ -51,6 +51,11 @@
 \fancyfoot[CE,CO]{\thepage}
 \pagestyle{fancy}
 
+% define chapterabstract
+\makeatletter
+\newenvironment{chapterabstract}{\hfill\begin{minipage}{\dimexpr\textwidth-0.5cm}\itshape}{\end{minipage}\vskip 0.5cm\par\@afterindentfalse\@afterheading}
+\makeatother
+
 \begin{document}
 
 \pagenumbering{Alph}
@@ -73,7 +78,7 @@
     \normalsize
     Supervisor: Michael Nissen, M.Sc.
     \\[2em]
-    \includegraphics[width=0.5\textwidth]{assets/logo}
+    \includegraphics[width=0.5\textwidth]{assets/fau-logo}
     \end{center}
 %
 }
@@ -122,7 +127,7 @@ Erlangen, \today \hspace*{2cm} my signature
 
 \clearpage
 \input{CV}
-\addcontentsline{toc}{section}{Curriculum Vitae}
+\addcontentsline{toc}{chapter}{Curriculum Vitae}
 \end{document}
 
 
