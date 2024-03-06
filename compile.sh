@@ -1,7 +1,7 @@
 #!/bin/bash
 shopt -s extglob  # Enable extended globbing
 
-NAME=fau-thesis
+NAME=thesis
 
 function rm_files {
   rm -f $NAME+(.aux|.bbl|.bcf|.blg|.log|.out|.run.xml|.toc)

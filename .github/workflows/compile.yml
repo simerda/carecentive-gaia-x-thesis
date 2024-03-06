@@ -8,24 +8,21 @@ on:
 
 jobs:
   compile:
-    name: Compile PDF via xelatex
+    name: Compile PDF via lualatex
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Install LaTeX (xelatex and biber)
-        run: sudo apt-get update && sudo apt-get install texlive-xetex biber
-
       - name: Checkout code
         uses: actions/checkout@v4.1.0
 
       - name: Compile PDF
-        run: ./compile.sh
+        run: docker run --rm -v "$(pwd):/workspace" -w /workspace madlabfau/texlive-full:2020 make thesis
 
       - name: Store PDF as artifact
         uses: actions/upload-artifact@v4.1.0
         with:
           name: thesis-pdf
-          path: ./fau-thesis.pdf
+          path: ./thesis.pdf
 
   publish:
     name: Publish PDF to Google Drive
@@ -42,7 +39,7 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@v0.3
         with:
           credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: "fau-thesis.pdf"
+          filename: "thesis.pdf"
           folderId: ${{ secrets.FOLDER_ID }}
           name: "Integration of Gaia-X in Carecentive (Working Snapshot).pdf"
           overwrite: "true"

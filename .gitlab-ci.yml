@@ -1,0 +1,10 @@
+compile_pdf:
+  image: madlabfau/texlive-full:2020
+  tags:
+    - general
+  script:
+    - make thesis
+  artifacts:
+    paths: 
+      - thesis.pdf
+    expire_in: 52 weeks

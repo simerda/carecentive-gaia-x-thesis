@@ -1,0 +1,13 @@
+% Use this file to define LaTeX macros and placeholders
+\newcommand{\OurMethod}{Fancy Name} % example: use \OurMethod as a placeholder for a name that isn't finalized yet.
+
+% define mathematical variables: 
+% It's good practice to define variables at one place and add a nomenclature if you have a lot of mathematical variables. 
+% This will also help you to keep track of your naming schema.
+% Example: 
+%\def\states{\vec{x}}           \nomenclature[x]{$\states$}{State vector}
+
+% define chapterabstract
+\makeatletter
+\newenvironment{chapterabstract}{\hfill\begin{minipage}{\dimexpr\textwidth-0.5cm}\itshape}{\end{minipage}\vskip 0.5cm\par\@afterindentfalse\@afterheading}
+\makeatother

@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Bachelor's/Master's Thesis       First Name      Last Name       Date
+%  "Title"
+%  Machine Learning and Data Analytics Lab, FAU Erlangen-Nuernberg
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{maddoc}
+% ++ es werden keine underfull hboxes als Fehler ausgegeben,
+%    da das ja nur heißt, dass die Seite noch nicht ganz voll ist
+\hbadness=10000
+
+% load the bibliography file
+\addbibresource{bibliography.bib}
+
+% Nomenclature
+%\usepackage[english]{nomencl}
+%\makenomenclature
+
+\usepackage{graphicx}
+
+% Ensure that lualatex looks very similar to pdflatex
+\setmainfont{texgyretermes}[
+  UprightFont = *-regular ,
+  BoldFont = *-bold ,
+  ItalicFont = *-italic ,
+  BoldItalicFont = *-bolditalic ,
+  Extension = .otf ,
+  Scale = 1.0 ]
+\defaultfontfeatures{Ligatures=TeX}
+
+\input{config}
+\input{commands}
+
+\pagenumbering{roman}
+
+\begin{document}
+\begin{center}
+\bfseries
+Übersicht
+\normalfont
+\end{center}
+Deutsche Zusammenfassung (German Summary)
+
+\vspace{5.0cm}
+
+\begin{center}
+\bfseries
+Abstract
+\normalfont
+\end{center}
+English Summary
+
+% Print a table fo contents
+\tableofcontents
+\cleardoublepage
+
+% Nomenclature
+% \addcontentsline{toc}{chapter}{Nomenclature}
+%\null\newpage
+%\printnomenclature[4em]
+%\cleardoublepage
+
+% start arabic page numbers
+\pagenumbering{arabic}
+
+% CONTENT
+% Here we include the actual content of the thesis.
+% Feel free to add/remove/rename the files and include statements according to your needs.
+% Each file should start with a \chapter{Title} command
+\include{contents/text}
+
+% APPENDIX
+% these files should appear in the appendix of the thesis
+% you can again use as many or as few files and chapters as required for your thesis
+\appendix
+% \include{contents/app-01-example}   % Glossar (\chapter{Glossar}  TEXT)
+% \include{contents/app-02-example}   %
+% \include{contents/app-03-example}   %
+
+% Don't change these includes
+\include{includes/mad-lof} % List of Figures
+\include{includes/mad-lot} % List of Tables
+\include{includes/mad-lit} % Bibliography
+\input{acronyms} % Acronym definition and list of acronyms
+
+\end{document}
