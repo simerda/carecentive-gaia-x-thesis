@@ -1,5 +1,5 @@
 [![PDF Compilation](https://github.com/simerda/carecentive-gaia-x-thesis/actions/workflows/compile.yml/badge.svg)](https://github.com/simerda/carecentive-gaia-x-thesis/actions/workflows/compile.yml)
-# Integration of Gaia-X in Carecentive (Provisional name)
+# Sharing Medical Trial Data in Federated Gaia-X Data Spaces
 ## A Master's Thesis
 > Beware that the thesis is a work in progress and should be treated as such.
 > 
