@@ -6,5 +6,5 @@
 > The information in the current phase of the work may be factually or formally incomplete or even incorrect.
 
 ### CI
-The thesis is witten in the LaTeX format and gets compiled and published with each push using GitHub Actions.
+The thesis is written in the LaTeX format and gets compiled and published with each push using GitHub Actions.
 To see the compiled PDF version, check out [this link](https://drive.google.com/file/d/1-jwQRsjez7RViDOCa9VMJgRjPZL8eX2h/view?usp=sharing).
