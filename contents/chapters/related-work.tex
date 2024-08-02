@@ -1,8 +1,11 @@
 \chapter{Related Work}\label{ch:related-work}
 
 \begin{chapterabstract}
-    In this chapter, we review literature related to the topics of federated infrastructure, data spaces and Gaia-X specifically.
-\end{chapterabstract} % TODO: expand chapter abstract
+    This chapter covers a review of literature related to the topics of digital sovereignty, federated infrastructure, data spaces and finally the Gaia-X initiative itself.
+    The review offers insight into the feasibility of the Gaia-X vision, its upsides and potential challenges as well as their mitigation strategies and possible use-cases.
+    Selected topics are covered in both technical, legal, security and geopolitical standpoints.
+    The chapter ends with a conclusion drawn from the review literature.
+\end{chapterabstract}
 
 \section{Designing Data Spaces}\label{sec:designing-data-spaces}
 
@@ -15,7 +18,7 @@ Gaia-X's role in creating a federated, interoperable and secure data infrastruct
 The book is a helpful resource for understanding Gaia-X, offering insights into its impact on secure data exchange and innovation.
 
 A noteworthy section of the chapter is about the measuring of success of Gaia-X.
-It mentions the goal of doubling the cloud usage in Europe within 4--5 years as well as the announced contribution of 1.2 B\char"20AC~ by the European Commission for the creation of data spaces.
+It mentions the goal of doubling the cloud usage in Europe within 4--5 years as well as the announced contribution of 1.2 B\char"20AC~ by the European Commission for the creation of data spaces. % TODO: consider evaluating these metrics for the current state of Gaia-X
 
 \section{Security Engineering of Patient-Centered Health Care Information Systems in Peer-to-Peer Environments}\label{sec:security-engineering-of-patient-centered-health-care-information-systems-in-peer-to-peer-environments}
 
@@ -41,12 +44,222 @@ The EHDS represents a crucial step towards a more integrated and efficient healt
 
 \section{Federated electronic health records for the European Health Data Space}\label{sec:federated-electronic-health-records-for-the-european-health-data-space}
 
+The paper ``Federated electronic health records for the European Health Data Space'' by René Raab et al., published in \textit{The Lancet Digital Health} journal discusses the implementation of a federated architecture for electronic health records (EHRs) within the European Health Data Space (EHDS)\cite{raab_federated_2023}.
+The authors argue that while the EHDS aims to empower citizens by giving them access to and control over their health data, traditional centralized data storage systems pose significant privacy and security risks.
+To mitigate these concerns, the paper proposes a decentralized model called ``federated personal health data spaces,'' which stores health data on personal devices or cloud servers under their control, rather than central servers solely managed by a provider.
+The paper suggests for the proposed system to go beyond the storage of medical data and allow citizens to include wearable device, digital wellness and preventive care data.
+Authors stress the need for the interoperability of the EHDS implementation to avoid a fragmented data landscape, leading to rejection from citizens and researchers alike.
+
+The paper highlights the potential benefits of this model, including better patient outcomes, increased engagement with health data, and the facilitation of large-scale population studies.
+The flexibility of the federated approach allows it to cater to diverse user needs, from those who prefer to manage their data independently to those who might delegate control to a trusted entity.
+
+In conclusion, the proposed federated personal health data spaces offer a viable alternative to centralized data storage systems, aligning with the EHDS objectives while addressing privacy and security concerns.
+This model not only empowers citizens but also fosters a more inclusive and transparent health data ecosystem, ultimately benefiting both individual healthcare and broader medical research initiatives.
+
 \section{Digital Sovereignty in the EU: Challenges and Future Perspectives}\label{sec:digital-sovereignty-in-the-eu:-challenges-and-future-perspectives}
 
-\section{Project GAIA-X: A Federated Data Infrastructure as the Cradle of a Vibrant European Ecosystem}\label{sec:project-gaia-x:-a-federated-data-infrastructure-as-the-cradle-of-a-vibrant-european-ecosystem}
+The chapter ``Digital Sovereignty in the EU: Challenges and Future Perspectives'' by Edoardo Celeste published by the book \textit{Data Protection Beyond Borders} examines the concept of digital sovereignty in the European Union (EU)\cite{dig_sovereignty_challenges}.
+It highlights the EU's dependence on foreign technology companies, mainly from the US and China, and the associated risks to fundamental rights and geopolitical stability.
 
-\section{GAIA-X and IDS}\label{sec:gaia-x-and-ids}
+Celeste contextualizes digital sovereignty historically, noting its evolution from traditional notions of territorial control to encompass control over data and digital infrastructures in the digital age.
+The paper discusses recent EU policies aimed at reducing reliance on non-European service providers by promoting local data storage and European digital services.
+These initiatives, including Gaia-X, are part of the EU's effort to regain control over its data and protect its values and rights.
+
+The paper also addresses the potential downsides of digital sovereignty, warning against a protectionist approach that could lead to internet fragmentation and international conflicts.
+Celeste emphasizes the need for a balanced approach that fosters international cooperation while safeguarding the EU's strategic interests.
+
+In conclusion, the paper argues for a pursuit of digital sovereignty that avoids isolationism and promotes global collaboration, ensuring the protection of fundamental rights and a secure, independent digital future for the EU.
+
+\section{Project Gaia-X: A Federated Data Infrastructure as the Cradle of a Vibrant European Ecosystem}\label{sec:project-gaia-x:-a-federated-data-infrastructure-as-the-cradle-of-a-vibrant-european-ecosystem}
+
+``Project Gaia-X: A Federated Data Infrastructure for Europe'' is a publication by the German Federal Ministry for Economic Affairs and Energy (BMWi) --- now named Federal Ministry for Economic Affairs and Climate Action (BMWK) --- which published at the inception of the project in 2019.
+The publication presents the Gaia-X project fueled by the vision of a secure, transparent, and sovereign data infrastructure for Europe\cite{project_gaia_x}.
+Motivated by the dependency on non-European cloud providers and the risks of data sovereignty loss, the ministry presents the project aims to create an open digital ecosystem where data can be securely shared and utilized across various sectors, including public administration, healthcare, and enterprises.
+
+The project seeks to integrate existing cloud and edge computing services into a unified system that enhances interoperability and reduces complexity.
+This federated approach allows for seamless switching between providers, minimizing lock-in effects and fostering competition.
+According to authors, small and medium-sized enterprises (SMEs), in particular, stand to benefit from easier adoption and broader access to cloud technologies.
+
+The publication mentions plans for establishing a governing entity, developing a robust reference architecture --- steps which are bring carried out at the moment --- and setting standards to ensure economic viability and sustainability.
+By doing so, Gaia-X aims to uphold European values and standards in the global data economy, promoting innovation and economic growth while ensuring data sovereignty
+
+\section{Gaia-X and IDS}\label{sec:gaia-x-and-ids}
+
+The position paper ``Gaia-X and IDS'' by the International Data Spaces Association (IDSA) examines how the International Data Spaces (IDS) Reference Architecture Model (IDS-RAM) aligns with Gaia-X principles\cite{gaiax_and_ids}.
+Gaia-X, a newer initiative, aims to create a federated cloud infrastructure that promotes data sovereignty, interoperability, and innovation across sectors in Europe.
+IDS, established in 2015, offers a mature framework for secure data exchange and sovereignty.
+
+Gaia-X focuses on overcoming cloud landscape fragmentation and legal uncertainties, supporting seamless data exchange through standardized models.
+IDS provides a framework with roles like data owners and consumers and includes a certification scheme for trust and security.
+
+The paper highlights that Gaia-X and IDS are complementary.
+Gaia-X's infrastructure benefits from IDS's data sovereignty and security capabilities.
+Integration areas include digital identities, certification, self-description, usage control, and trustworthy runtime environments.
+For example, Gaia-X's Federated Catalogue can use IDS components, and IDS's Clearing House can enhance Gaia-X's data services.
+
+Future steps for Gaia-X include establishing the Gaia-X Foundation and launching Federation services, with continued collaboration with IDS to support sovereign digital ecosystems in Europe.
 
 \section{Federated learning of predictive models from federated Electronic Health Records}\label{sec:federated-learning-of-predictive-models-from-federated-electronic-health-records}
 
+The paper ``Federated Learning for Healthcare Informatics'' by Jie Xu et al., published in the \textit{Journal of Healthcare Informatics Research} examines how federated learning (FL) can address the challenges of using fragmented and sensitive healthcare data\cite{federated_learning_for_healthcare_infromatics}.
+FL allows decentralized data sources to collaboratively train machine learning models without sharing the data, preserving privacy and regulatory compliance.
+Authors review reviews FL applications in healthcare, focusing on issues like data heterogeneity and communication efficiency.
+Solutions include consensus methods and pluralistic approaches to manage diverse data sources, along with privacy measures such as secure multi-party computation and differential privacy.
+
+Key healthcare applications include predictive modeling, phenotyping, and patient similarity learning.
+FL has shown effectiveness in improving predictions for hospital readmissions and managing chronic diseases without compromising privacy.
+In summary, FL offers a promising approach for collaborative, privacy-preserving healthcare analytics, enhancing patient outcomes and advancing research, with ongoing research needed to tackle technical challenges.
+
 \section{Sovereignly Donating Medical Data as a Patient: A Technical Approach}\label{sec:sovereignly-donating-medical-data-as-a-patient:-a-technical-approach}
+
+The paper ``Sovereignly Donating Medical Data as a Patient: A Technical Approach'' by Florian Lauf et al., proposes a system to enhance patient control over medical data donations for research\cite{sovereignly_donating_medical_data}.
+The authors introduce a patient portal where patients can view and select specific research projects to support, enhancing data sovereignty.
+
+Integrating concepts from the Medical Informatics Initiative (MII), International Data Spaces (IDS), and MY DATA Control Technologies, the system uses IDS Connectors for secure data transfer and enforces patient choices through usage control policies.
+This approach builds trust by providing transparency and control, ensuring interoperability with existing medical data standards like HL7 FHIR.
+
+In the context of Gaia-X, the paper demonstrates principles of data sovereignty and secure data sharing, aligning with Gaia-X's goals of a federated and secure data infrastructure in Europe.
+It showcases a practical application of Gaia-X's framework, promoting trust and control over data usage.
+
+\section{Data Mesh as Distributed Data Platform for Large Enterprise Companies}\label{sec:data-mesh-as-distributed-data-platform-for-large-enterprise-companies}
+
+The conference paper ``Data Mesh as Distributed Data Platform for Large Enterprise Companies'' by Yevhenii Vlasiuk and Viktoriia Onyshchenko explores the evolution of data platforms and introduces data mesh architecture as a solution for large enterprises\cite{data_mesh}.
+Traditional centralized platforms like data warehouses and lakes become complex and costly to maintain at scale.
+The paper suggests a distributed data platform, with data mesh being the most widespread implementation.
+
+Data mesh addresses issues of centralized platforms by decentralizing data ownership and promoting domain-specific management.
+This approach enhances scalability, performance, and adaptability, making it suitable for diverse business needs.
+The paper emphasizes the importance of data syndication and quality processes in the data mesh architecture for its successful adoption, indicating these areas require further research.
+
+In summary, the paper proposes that data mesh can resolve the inefficiencies of centralized data platforms by enabling better integration and management of data across various business domains, ultimately leading to more efficient data handling and utilization in large enterprises.
+
+\section{A Case for Data Commons: Toward Data Science as a Service}\label{sec:a-case-for-data-commons:-toward-data-science-as-a-service}
+
+The paper ``A Case for Data Commons: Toward Data Science as a Service'' by Robert L. Grossman et al., published in the \textit{Computing in Science \& Engineering} journal discusses data commons, which integrate data, storage, and computing with essential services, addressing the challenge of managing vast scientific data\cite{towards_ds_as_a_service}.
+The authors describe data commons designed with the Open Science Data Cloud (OSDC) and the Open Commons Consortium (OCC). The OSDC, with over 1 petabyte of public research data, exemplifies ``data as a service,'' enabling researchers to use cloud resources without local management.
+
+Science as a service involves cloud-based data storage and analysis and tools for less-trained personnel.
+Key requirements include permanent digital IDs, metadata, API access, data portability, data peering, and a computing payment model.
+Examples of OCC-operated data commons include OSDC, Matsu (with NASA), OCC NOAA, National Cancer Institute’s genomic data commons, and Bionimbus.
+
+The paper emphasizes the need for data reanalysis, sustainable models, and standardization, enhancing research reproducibility and interconnected data resources.
+
+\section{Foundation Data Space Models: Bridging the Artificial Intelligence and Data Ecosystems}\label{sec:foundation-data-space-models:-bridging-the-artificial-intelligence-and-data-ecosystems}
+
+The vision paper ``Foundation Data Space Models: Bridging the Artificial Intelligence and Data Ecosystems'' by Edward Curry et al., published by the \textit{IEEE} discusses integrating foundation models with data-sharing infrastructures called data spaces.
+Foundation models, pre-trained on extensive data and fine-tuned for specific tasks, are transforming AI. Data spaces, crucial to the European Data Strategy, ensure high-quality data sharing.
+
+The authors propose Foundation Data Space Models (FDSM), where data spaces offer training data and governance, and foundation models provide advanced services.
+This integration addresses challenges like data availability, trust, governance, and handling multimodal data.
+
+The paper outlines a lifecycle for FDSM, covering data creation, sharing, deployment, discovery, maintenance, improvement, training, adaptation, and service deployment, aiming for efficient integration of foundation models into data spaces.
+
+The work calls for research on FDSM, focusing on interoperability, multimodal data handling, robustness, and ethics, to advance European data spaces and AI ecosystems.
+
+\section{Legal and technological aspects for the creation of a European Health Data Space}\label{sec:legal-and-technological-aspects-for-the-creation-of-a-european-health-data-space}
+
+The paper ``Legal and Technological Aspects for the Creation of a European Health Data Space'' by André Caravela Machado and Daniel Ferreira Polónia, published by the \textit{IEEE} discusses developing a European Health Data Space (EHDS)\cite{legal_and_technological_aspects_of_ehds}.
+It covers the legal and technological requirements for a unified data infrastructure in the EU.
+
+From the legal standpoint, it examines GDPR implications, focusing on privacy, anonymization, and secondary use of health data, emphasizing the need for alignment with GDPR.
+Technologically, it highlights data governance and quality, proposing a framework to balance data accessibility with privacy protections.
+
+The paper stresses a harmonized approach among EU member states to enhance data sharing and interoperability, improving health outcomes and supporting advances in personalized medicine and healthcare efficiency.
+
+In conclusion, the authors suggest mechanisms for individuals to control their health data access, ensuring compliance with privacy regulations.
+Authors conclude the EHDS to be essential for leveraging data to improve healthcare and foster innovation in the European health sector.
+
+\section{Digital Twin Space: The Integration of Digital Twins and Data Spaces}\label{sec:digital-twin-space:-the-integration-of-digital-twins-and-data-spaces}
+
+The paper ``Digital Twin Space: The Integration of Digital Twins and Data Spaces'' by Alessandra Somma et al., published by the \textit{IEEE} presents the Digital Twin Space (DTS) architecture, combining Digital Twins (DTs) and Data Spaces for better data management and interoperability\cite{digital_twins_and_data_spaces}.
+Digital Twins are virtual models of physical systems using real-time data for monitoring, while Data Spaces offer secure data sharing infrastructures.
+
+Urban Digital Twins (UDTs) enhance management by virtualizing urban assets like buildings, mobility infrastructures, energy grids, waste management facilities, etc., allowing to run analysis and predictions, but there is a lack of standardized architectures and data management.
+The DTS model integrates Data Spaces, adhering to guidelines from the International Data Spaces Association (IDSA) and Gaia-X.
+
+The DTS architecture includes layers for data ingestion, storage, analytics, and governance, using IDS-RA components for secure data exchange.
+A case study on a smart photovoltaic panels demonstrates DTS's practical application, showing how it improves urban management with interoperable digital models.
+
+In summary, DTS enhances data management and interoperability in urban environments, with future work focusing on aligning DTS with data sovereignty principles and broader smart city validation.
+
+\section{The Adoption of Data Spaces: Drivers Toward Federated Data Sharing}\label{sec:the-adoption-of-data-spaces:-drivers-toward-federated-data-sharing}
+
+The paper ``The Adoption of Data Spaces: Drivers Toward Federated Data Sharing'' by Andreas Hutterer and Barbara Krumay explores factors influencing the adoption of data spaces for federated data sharing among organizations\cite{adoption_of_data_spaces}.
+These spaces address issues of data sovereignty, trust, and value, which hinder interorganizational data sharing.
+
+Through interviews with 28 experts, the study identifies twelve key drivers: controllable complexity, cost clarity, data sovereignty, ecosystem governance, ecosystem readiness, interoperability, mature technology, regulatory certainty, security, technology competence, transparency, and trust.
+These drivers help overcome technical and organizational challenges.
+
+The findings emphasize the need for a holistic approach, highlighting the relevance to the Gaia-X initiative.
+By addressing these drivers, Gaia-X can enhance competitiveness and innovation in the digital economy through improved data exchange and collaboration.
+The study provides a foundation for future research and practical implementation of data spaces.
+
+\section{Europe's Quest for Digital Sovereignty: Gaia-X as a Case Study}\label{sec:europes-quest-for-digital-sovereignty:-gaia-x-as-a-case-study}
+
+The paper ``Europe’s Quest for Digital Sovereignty: Gaia-X as a Case Study'' by Simona Autolitano and Agnieszka Pawlowska discusses Europe's efforts to achieve digital sovereignty through the Gaia-X project\cite{europe_quest_for_digital_sovereignty}.
+Authors mention the initiative's aspirations to establish a federated data infrastructure aligned with European values like data sovereignty and protection, reducing dependence on US and Chinese tech giants.
+
+The authors highlight past national cloud initiatives, such as France’s Andromède and Germany’s Bundescloud, and their challenges, like the struggle to compete with foreign tech giants.
+Gaia-X focuses on creating a secure, interoperable cloud ecosystem adhering to EU regulations like GDPR with the intent of fostering competition and innovation within Europe.
+
+Despite its promise, Gaia-X faces risks, particularly from potential involvement of non-EU companies, which might dilute its goal of digital sovereignty.
+The authors emphasize that Europe should leverage its regulatory strength to ensure the project's success and truly achieve digital independence.
+
+\section{From a Monolithic PLM Landscape to a Federated Domain and Data Mesh}\label{sec:from-a-monolithic-plm-landscape-to-a-federated-domain-and-data-mesh}
+
+The paper ``From a Monolithic PLM Landscape to a Federated Domain and Data Mesh'' by Y. Hooshmand et al., published by the \textit{Cambridge University Press} proposes transitioning traditional Product Lifecycle Management (PLM) systems from rigid, monolithic architectures to flexible, federated domains\cite{from_monolithic_plm_to_federated}.
+Current PLM systems in manufacturing face high maintenance costs and poor scalability.
+
+To solve these issues, the authors suggest:
+
+\begin{enumerate}
+\item Domain-Driven Design (DDD): Breaking PLM systems into smaller, user-centric domains to improve flexibility.
+\item Data Mesh: Decentralizing data ownership and treating data as a product, ensuring it is discoverable and interoperable.
+\item Semantic Web Technologies: Using standardized data exchange to enhance interoperability and adaptability.
+\end{enumerate}
+This approach aims to make PLM systems more agile and data-driven, allowing for quicker responses to market changes and better decision-making.
+
+The Data Mesh concept offers a compelling use case for the Gaia-X project as it delivers the features Data Mesh builds upon, like decentralized data ownership, decentralized architecture, data as a product, self-serve data infrastructure and federated computational governance.
+
+\section{Breaking Down Data Silos: Data Mesh to Achieve Effective Aggregation in Data Localization}\label{sec:breaking-down-data-silos:-data-mesh-to-achieve-effective-aggregation-in-data-localization}
+
+The paper by Jaganmohan~R.~Kancharla and Dr.~S.~D.~Madhu Kumar, published by the \textit{IEEE} addresses challenges posed by data localization laws that complicate data management\cite{breaking_down_data_silos}.
+They propose a decentralized Data Mesh architecture to solve these issues.
+
+Data localization complicates data aggregation, quality, analytics, and compliance.
+Traditional management creates data silos and governance problems.
+The Data Mesh promotes domain-specific data management, ensuring compliance and efficient aggregation.
+
+A unified data mesh model with an abstraction layer ensures secure, standardized data integration across regions.
+This approach improves data quality, market readiness, agility, and compliance with localization laws.
+
+Future research should focus on industry-specific applications and frameworks for the data mesh model.
+In conclusion, the Data Mesh architecture offers a flexible solution to data localization challenges, enabling effective data use while complying with regional regulations.
+
+\section{Implementing Federated Governance in Data Mesh Architecture}\label{sec:implementing-federated-governance-in-data-mesh-architecture}
+
+The paper ``Implementing Federated Governance in Data Mesh Architecture'' by Anton Dolhopolov et al., published in the \textit{Future Internet} journal explores the data mesh architecture, which aims to decentralize data management to enhance scalability and efficiency\cite{implementing_federated_governance}.
+Key principles include distributed data domains, data-as-a-product, self-serve infrastructure, and federated governance.
+
+The authors propose a blockchain-based approach using Hyperledger Fabric and Fybrik to implement federated governance. % TODO: relevance to Gaia-X?
+This integration ensures secure, compliant, and optimized data management across hybrid environments.
+The system features include data contract management, automated governance, and metadata versioning.
+
+The paper highlights the limitations of current data platforms and offers a novel solution for scalable data governance in decentralized systems.
+This work advances the understanding and practical application of federated data mesh architectures.
+
+\section{Conclusion}\label{sec:conclusion}
+
+The literature review highlights the substantial potential of deploying Gaia-X or similar initiatives based on federated infrastructures to revolutionize data management, cloud storage, and digital sovereignty in Europe.
+Significant investments are driven by the vision of creating a European data economy and reducing dependence on US and Chinese digital service providers.
+Additionally, the aim is to ensure compliance with EU regulations and enhance research efforts through data reusability, interoperability, and streamlined data collection using Electronic Health Records (EHRs).
+
+The federated architecture of Gaia-X enables flexible extension of the data infrastructure to meet domain-specific needs and minimizes the risks associated with centralized data silos, which can pose security threats.
+Potential use cases for the Gaia-X framework include deployment in European Health Data Spaces (EHDSs), Digital Twins (DTs), and various industries, such as Product Lifecycle Management (PLM). The interoperable federated landscape offers better scalability options, facilitates smooth transitions between providers, prevents vendor lock-in, and improves flexibility compared to monolithic architectures.
+
+Legal considerations primarily involve the protection of personal data, governed mainly by the General Data Protection Regulation (GDPR). In the context of secondary data use for research and development, particularly in healthcare, data reuse is limited by fragmented policies among EU member countries\cite{legal_and_technological_aspects_of_ehds}.
+Harmonizing these policies could streamline the data reuse process.
+
+The main risks associated with the Gaia-X initiative include concerns about competitiveness and the potential dilution of digital sovereignty by involving non-EU companies\cite{europe_quest_for_digital_sovereignty}.
+Conversely, E.~Celeste\cite{dig_sovereignty_challenges} warns against an excessive push towards digital sovereignty, which could lead to protectionism and be economically counterproductive.
+S.~Autolitano and A.~Pawlowska\cite{europe_quest_for_digital_sovereignty} emphasize the need for Gaia-X to address real market needs to avoid the shortcomings of previous projects, such as the French Andromède or the German Bundescloud, and to ensure financial sustainability.
