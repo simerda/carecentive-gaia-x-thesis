@@ -7,7 +7,7 @@ thesis: $(TARGET).pdf
 all: thesis
 
 $(TARGET).pdf:
-	latexmk -pdflatex=lualatex -pdf $(TARGET).tex
+	latexmk -pdflatex=lualatex -pdf -shell-escape $(TARGET).tex
 
 clean:
 	latexmk -c

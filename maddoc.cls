@@ -85,7 +85,7 @@ maxnames=99
         \hfill
         \begin{minipage}{0.61\textwidth} % 0.58 + spacing
             \hfill
-            {\includegraphics[width=0.8\textwidth]{img/fau_logo.jpg}}
+            {\includegraphics[width=0.8\textwidth]{img/fau_logo.pdf}}
             %% 514mm x 100mm
         \end{minipage}
     }
