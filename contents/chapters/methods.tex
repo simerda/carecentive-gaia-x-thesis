@@ -4,8 +4,8 @@
     In the following chapter outlines the methodology used to assess the Gaia-X initiative, the reference framework implementation by GXFS and answer the research questions stated in the introductory Chapter~\ref{ch:introduction}.%TODO: replace GXFS by XFSC
     The main method of work is implementation of a Gaia-X-compliant data exchange module, serving as a proof of concept.
     Based on this, the Gaia-X-related technical challenges are noted.
-    Additionally, a series of experiments is presented as a way to evaluate the proper functionality of the XFSC services, followed with a section on its evaluation.
-    Lastly, we present a selection of risks and metrics identified in the Chapter~\ref{ch:related-work} --- Related Work.
+    Additionally, a series of experiments is presented as a way to ensure proper functionality of the XFSC services, followed with a section on its evaluation.
+    Lastly, we present a selection of risks and metrics identified in the Chapter~\ref{ch:related-work} --- Related Work.% TODO: ensure risks and metrics are present
 \end{chapterabstract}
 
 \section{About Carecentive}\label{sec:about-carecentive}
@@ -93,14 +93,302 @@ A list of all provided endpoints with their description, authorization and HTTP 
 
 Now, let's take a look at the workflows of a Carecentive admin registering a participant and a data resource, contracting between the user and admin and finally the consumption of data by the user.
 
-\subsection{Data Product registration}\label{subsec:data-product-registration}
-The data resource is registered using the \texttt{``/api/gaia-x/data-products''} resource
+\subsection{Participant registration}\label{subsec:participant-registration}
 
+Before a data product can be registered, the Carecentive admin needs to create a participant.
+This is done by sending a \texttt{POST} request to the ``\texttt{/api/admin/gaia-x/participants}'' endpoint, specifying the details about the organization (\textit{VAT ID}, \textit{name} of the organization, \textit{country code} of the organization's legal address).
+A certificate chain (must be of type EV SSL or eIDAS compliant) and a corresponding private key are required to sign the Gaia-X Credentials and create a DID.
+Lastly, a so-called ``\texttt{participantSlug}'' is needed—a unique alphanumerical string that serves mainly as a directory name for storing all participant-related files.
 
+Figure~\ref{fig:participant_req} showcases a sample \texttt{POST} request to the ``\texttt{/api/admin/gaia-x/participants}'' endpoint.
+
+\begin{figure}
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST /api/admin/gaia-x/participants HTTP/1.1
+Content-Type: application/json
+
+{
+	"certificateChain": [
+		"-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAKH3BLaGxskwMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\n...\nJmCVzwB/MCuv3z4IV0IsbP5ZKh+6m0oI+RINdDl4Stxdj6LK8JspNeU0R6mBg1A=\n-----END CERTIFICATE-----",
+		"-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAMDOIDZf9l9yMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\n...\nv5pXVIlZm8DtRmDTUp8pNDnQ5UAZTuDPaWo3zbxZPOUmGJ1IlBOgaQvsyPCW5gU=\n-----END CERTIFICATE-----",
+	],
+	"privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAM6Q5O3vVfnxk6P7\n...\nYWw+HiFJh9XQpRUtv9PV8L8AqFFfMdsOpT6pgC+aA/WB\n-----END PRIVATE KEY-----",
+	"vatId": "DE132507686",
+	"organizationName": "Acme Corporation",
+	"countryCode": "DE-BY",
+	"participantSlug": "acme-corp"
+}
+    \end{minted}
+    \caption{Example participant request}\label{fig:participant_req}
+\end{figure}
+
+This results in the creation of a database record.
+The certificate chain is also stored and used to create a DID document.
+This then enables the creation of the \textit{LegalRegistrationNumber}, \textit{TermsAndConditions}, and, finally, \textit{Participant} credentials.
+
+\subsection{Data Product Registration}\label{subsec:data-product-registration}
+
+Once a participant is created, it can be used for exposing data products under it.
+This is achieved by sending a \texttt{POST} request to the ``\texttt{/api/gaia-x/data-products}'' endpoint, specifying the participant ID in Carecentive and the route to be shared (at the moment, this can be ``\texttt{/api/questionnaires}'' or ``\texttt{/api/withings}'').
+Following this, you need to include the information used to create the Gaia-X credentials.
+For the creation of credentials, the inclusion of \texttt{title}, \texttt{description}, \texttt{termsAndConditions}, \texttt{termsOfUsage}, \texttt{license}, and \texttt{policy} is mandatory.
+The inclusion of \texttt{dataCreatedAt}, \texttt{dataExpiresAt}, and \texttt{dataLanguageCode} is optional.
+Finally, the private key has to be included again since it is not stored on the server for security reasons.
+
+Figure~\ref{fig:data_products_req} showcases a sample \texttt{POST} request to the ``\texttt{/api/gaia-x/data-products}'' endpoint.
+
+\begin{figure}
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST /api/gaia-x/data-products HTTP/1.1
+Content-Type: application/json
+
+{
+	"participantId": 1,
+	"title": "Palliative Care Questionnaires",
+	"description": "sample description",
+	"termsAndConditions": "sample terms and conditions",
+	"termsOfUsage": "sample terms of usage",
+	"license": "sample license",
+	"policy": "default: allow",
+	"route": "/api/questionnaires",
+	"dataCreatedAt": "2024-07-01 12:00:00",
+	"dataExpiresAt": "2025-01-01 12:00:00",
+	"dataLanguageCode": "en",
+	"privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAM6Q5O3vVfnxk6P7\n...\nYWw+HiFJh9XQpRUtv9PV8L8AqFFfMdsOpT6pgC+aA/WB\n-----END PRIVATE KEY-----"
+}
+    \end{minted}
+    \caption{Example data products request}\label{fig:data_products_req}
+\end{figure}
+
+This results in the creation of a database record, which enables anyone to browse the available data product.
+Crucially, the following general Gaia-X credentials are created: \textit{ServiceOffering}, \textit{DataResource}, \texttt{SoftwareResource}, \texttt{InstantiatedVirtualResource}, \texttt{ServiceAccessPoint}, followed by \texttt{DataProductDescription}, \texttt{DatasetDescription}, and \texttt{DataUsage} credentials defined by the \textit{Data Exchange Services Specifications}~\cite{gaiax_data_exchange_document} document.
+
+\subsection{Data Contracting}\label{subsec:data-contracting}
+
+Before the contracting can take place, the user first has to browse and select the desired data product.
+The \texttt{GET} method on the ``\texttt{/api/gaia-x/data-products}'' endpoint serves just this purpose.
+Once the user has selected the desired data product, they need to take note of its ID in the form of a UUID\footnote{UUID is a Universally Unique Identifier, which is designed to be unique across different systems. The UUIDv4, which we use follows the form \texttt{xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx}, where M determines the version (4) and top 2 bits of N depict the variant used (10\textsubscript{2} in our case). The rest of bits (122) are randomly generated.}, which is used to identify selected data product.
+
+Contracting is initiated by user sending a \texttt{POST} request to the ``\texttt{/api/gaia-x/data-products/:dataProductId/contracts}'' endpoint, which expects a JSON object with single attribute \texttt{participantUrl}, which has to be a resolvable URL to user's valid Participant Credential.
+The backend fetches the Participant Credential, its issuer's DID document and the DID's certificate.
+Afterwards, the Participant Credential is validated and its signature is verified against the DID certificate.
+Lastly, the server creates a contract proposal based on the selected data product and provided participant, hashes of the participant, DID document, user certificate, and the contract proposal are stored to prevent bring tampered with during the contracting phase.
+The contract proposal record is then stored into the DB and the contract proposal itself is returned to the user for signing.
+With that, the contract proposal moves to the state ``\texttt{CONSUMER\_SIGNATURE\_PENDING}''.
+
+Now the user has to sign the contract, by which they confirm agreement with the conditions of usage.
+The signature has to be formated as a JWS2020 (JSON Web Signature)\footnote{\url{https://www.w3.org/TR/vc-jws-2020/}}, which is stored in the form of three base64-encoded values separated by a dot --- \texttt{[header].[content].[signature]}.
+This follows the standard VC and Gaia-X signing scheme, where the header contains information about used signing algorithm, and the VC content is normalized using the \texttt{URDNA2015}, then a SHA256 hash is computed, which is then signed with the keypair associated with participant's DID.
+Gaia-X then mandates removal of the \texttt{[content]} part of the JWS (the hash value), since it's redundant as the signature is attached to the VC anyway.
+The final format of the signature is as follows: \texttt{[header]..[signature]}.
+
+Once the contract proposal is signed by the user and attached under the ``\texttt{proof}'' attribute of the contract, they can upload it to the Carecentive API, where it will await signature from admin.
+This is done by sending a \texttt{PUT} request to the endpoint ``\texttt{/api/gaia-x/data-products/:dataProductId/contracts/:dataProductContractId}'' with the signed contract attached as the request body.
+
+The Carecentive backend re-checks the integrity of the Participant credential, DID document, the user certificate and the contract contents.
+If all checks are successful, the contract signature is verified against the participant's certificate.
+If the signature is verified successfully, the contract proposal moves to the state ``\texttt{PRODUCER\_SIGNATURE\_PENDING}''.
+
+Now the contract awaits signing by a Carecentive admin, which can do so via the PUT method on the ``\texttt{/api/admin/gaia-x/data-product-contracts/:dataProductContractId}'' endpoint.
+This endpoint expects a JSON object with a single attribute ``\texttt{privateKey}'' as the request body.
+By providing a valid private key, the server co-signs the contract the state changes to ``\texttt{READY\_TO\_BE\_CLAIMED}''.
+
+The data contract is now signed by both parties and is ready to be claimed by the user.
+This is done by calling the ``\texttt{/api/gaia-x/data-products/:dataProductId/contracts/:contractId}'' endpoint using the \texttt{GET} method.
+The user also has to provide his contract signature of the contract as a \textit{Bearer} token in the \textit{Authorization} header to prevent unauthorized access.
+
+When the consumer claims the data contract, the contract moves to the state ``\texttt{FINALIZED}'', which concludes the contracting phase of the data exchange.
+
+Before the data contract reaches the ``\texttt{FINALIZED}'' state, a Carecentive admin can also reject the contract proposal by calling the ``\texttt{/api/admin/gaia-x/data-product-contracts/:dataProductContractId}'' endpoint using the \texttt{DELETE} method.
+This moves the contract to the ``\texttt{REJECTED}'' state, which is the second terminal state and an alternative way to conclude the data contracting phase.
+%TODO: add request/response examples
+%TODO: add UML diagrams
+
+\subsection{Data Consumption}\label{subsec:data-consumption}
+
+Once the data consumer has a valid and signed data product contract, they can begin consuming the data.
+To improve security and reduce the bandwidth used with each request, the contract is not presented each time the user is consuming data.
+The process is divided into two steps:
+\begin{enumerate}
+    \item Access token issuance
+    \item Data consumption
+\end{enumerate}
+
+The user first has to obtain a temporarily valid access token.
+This is done by sending a \texttt{POST} request to the ``\texttt{/api/gaia-x/authentication}'' endpoint with the data contract attached as the request body.
+The Carecentive server verified the validity of the contract and issues an access token valid for 10 minutes provided the validation is successful.
+
+The data consumer can then use the token to access the endpoint route specified in the data product (``\texttt{/api/questionnaires}'' or ``\texttt{/api/withings}'').
+To ensure successful authentication, the user must call the endpoint with the access token presented in the \texttt{Authorization} header as a \texttt{Bearer} token.
+
+\subsection{Code Organization}\label{subsec:code-organization}
+
+To ensure proper maintainability of the Carecentive project, the data exchange module follows the structure established by the existing project.
+This includes a logical separation of code into specific types of files, namely:
+\begin{itemize}
+    \item Models --- Map database rows onto specific objects
+    \item Services --- Handle complex application logic
+    \item Routes --- Act as an entry-point for a request (they perform tasks normally handled by Controllers in an \textit{MVC} or \textit{MVP} architecture)
+    \item Migrations --- Denote changes in the database structure to allow database versioning
+\end{itemize}
+
+To improve code readability, the data-exchange component introduces two new class types:
+\begin{itemize}
+    \item Helpers --- Handle a specific subset of the problem handled by one or more Services
+    \item Validators --- Enforce validation of the request body
+\end{itemize}
+
+Let's go over the specific classes that handle the application logic --- \textit{Services} and \textit{Helpers}:
+
+\begin{itemize}
+    \item \texttt{ThirdPartyTokenService} --- Handles the issuance of access tokens to enable Carecentive access to users outside of the platform.
+    \item \texttt{ParticipantStorage} --- A Helper which handles the storage of Gaia-X Credentials, DID document and other related files to the specific Participant-allotted storage space.
+    \item \texttt{DidService} --- Handles the creation and management of DID.
+    Is is supported by the \texttt{ParticipantStorage} helper.
+    \item \texttt{GaiaXService} --- Handles the creation, signing, and management of Gaia-X Credentials.
+    It uses the \texttt{DidService} to get the DID of a Participant and the \texttt{ParticipantStorage} helper to handle credential storage.
+    \item \texttt{ParticipantService} --- Handles the creation of new Participants.
+    Uses the \texttt{DidService} for DID creation, the \texttt{GaiaXService} for the creation of Participant Gaia-X Credentials and the \texttt{ParticipantStorage} for the cleanup of Participant data.
+    \item \texttt{DataProductService} --- Handles the creation of new data products and associated Gaia-X Credentials.
+    Uses the \texttt{GaiaXService} for the issuance of Gaia-X Credentials and the \texttt{ParticipantStorage} for storage of related non-Credential data.
+    \item \texttt{DataProductContractService} --- Handles the creation and verification of data product contracts (proposals) and issuance of temporary access tokens.
+    Additionally, it handles the verification of contracts and user-supplied artifacts (Participant Credential, DID document).
+    It uses the \texttt{GaiaXService} for Credential-related operations, the \texttt{ThirdPartyTokenService} for issuing access tokens, and the \texttt{ParticipantStorage} helper for reading Participant's certificate for producer signature verification.
+\end{itemize}
+
+To ensure correct behavior when introducing new changes in the code, automated testing was employed to discover potential issues.
+%TODO: more info on testing
 
 \section{Experiments}\label{sec:experiments}
 
+To judge the proper functioning of the Carecentive data-exchange module, services of the GXDCH, reference Gaia-X implementation and Gaia-X Credentials themselves, a series of experiments was conducted:
+\begin{enumerate}
+    \item Obtaining Gaia-X compliance for Participant-related Credentials
+    \item Obtaining Gaia-X compliance for ServiceOffering-related Credentials
+    \item Obtaining Gaia-X compliance for DataProduct-related Credentials
+    \item Performing exchange of questionnaire data
+    \item Performing exchange of questionnaire data
+    \item Performing data exchange with policy negotiation
+\end{enumerate}
 
+Below is detailed information about each of the experiments.
+
+\subsection{Obtaining Gaia-X compliance for Participant-related Credentials}\label{subsec:participant-compliance}
+
+The test is performed by calling the \texttt{POST} method on the Carecentive's ``\texttt{/api/admin/gaia-x/participants}'' endpoint using the data in Figure~\ref{fig:test_case_1}:
+
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST /api/admin/gaia-x/participants HTTP/1.1
+Content-Type: application/json
+
+{
+	"certificateChain": [
+		"-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAKH3BLaGxskwMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\n...\nJmCVzwB/MCuv3z4IV0IsbP5ZKh+6m0oI+RINdDl4Stxdj6LK8JspNeU0R6mBg1A=\n-----END CERTIFICATE-----",
+		"-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAMDOIDZf9l9yMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\n...\nv5pXVIlZm8DtRmDTUp8pNDnQ5UAZTuDPaWo3zbxZPOUmGJ1IlBOgaQvsyPCW5gU=\n-----END CERTIFICATE-----",
+	],
+	"privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAM6Q5O3vVfnxk6P7\n...\nYWw+HiFJh9XQpRUtv9PV8L8AqFFfMdsOpT6pgC+aA/WB\n-----END PRIVATE KEY-----",
+	"vatId": "DE132507686",
+	"organizationName": "Acme Corporation",
+	"countryCode": "DE-BY",
+	"participantSlug": "acme-corp"
+}
+    \end{minted}
+    \caption{Request for the experiment test case no.~1}\label{fig:test_case_1}
+\end{figure}
+
+The request is performed using the eIDAS-compliant qualified certificate for electronic signature and a valid FAU's VAT ID.
+The certificate chain and private key are redacted for privacy reasons.
+The request leads to the creation of a DID document, \textit{TermsAndConditions} and \textit{Participant} Gaia-X Credentials.
+The \textit{LegalRegistrationNumber} credential is obtained from the Gaia-X Notary by performing the request shown in Figure~\ref{fig:test_case_1_notary}.
+
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST https://registrationnumber.notary.lab.gaia-x.eu/v1/registrationNumberVC HTTP/1.1
+Content-Type: application/json
+
+{
+  "@context": [
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/participant"
+  ],
+  "type": "gx:legalRegistrationNumber",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/legal-registration-number.json#cs",
+  "gx:vatID": "DE132507686"
+}
+    \end{minted}
+    \caption{LegalRegistrationNumber request to the Gaia-X Notary service}\label{fig:test_case_1_notary}
+\end{figure}
+
+A response with HTTP code 200 and a validated \textit{LegalRegistrationNumber} credential signed by the Notary Trust Anchor in the response body is expected.
+
+Next, a request to the Gaia-X Compliance service is made by performing the request shown in Figure~\ref{fig:test_case_1_compliance}, where the \texttt{LegalRegistrationNumber}, \texttt{TermsAndConditions} and \texttt{Participant} placeholders are replaced with the actual respective credentials.
+
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST https://compliance.lab.gaia-x.eu/v1/api/credential-offers?vcid=https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/compliance.json HTTP/1.1
+Content-Type: application/json
+
+{
+  "@context": "https://www.w3.org/2018/credentials/v1",
+  "type": "VerifiablePresentation",
+  "verifiableCredential": [
+    {LegalRegistrationNumber},
+    {TermsAndConditions},
+    {Participant}
+  ]
+}
+    \end{minted}
+    \caption{Participant compliance request to the Gaia-X Compliance service}\label{fig:test_case_1_compliance}
+\end{figure}
+
+A response with HTTP code 201 and a compliance VC issued by the Compliance Trust Anchor in the response body is expected.
+
+Upon successfully passing all steps, the Carecentive API responds with the HTTP code 201 and returns the created participant model.
+
+\subsection{Obtaining Gaia-X compliance for ServiceOffering-related Credentials}\label{subsec:service-offering-compliance}
+
+Since this test relies on the participant record, the possibility of executing this experiment depends on successfully completing test no.~1.
+The test is performed by calling the \texttt{POST} method on the Carecentive's ``\texttt{/api/gaia-x/data-products}'' endpoint using the data in Figure~\ref{fig:test_case_2}:
+
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST /api/gaia-x/data-products HTTP/1.1
+Content-Type: application/json
+
+{
+    "participantId": 1,
+	"title": "Questionnaires",
+	"description": "sample questionnaire description",
+	"termsAndConditions": "sample terms and conditions",
+	"termsOfUsage": "sample terms of usage",
+	"license": "sample license",
+	"policy": "default: allow",
+	"route": "/api/questionnaires",
+	"dataCreatedAt": "2024-07-01 12:00:00",
+	"dataExpiresAt": "2025-01-01 12:00:00",
+	"dataLanguageCode": "en",
+	"privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAM6Q5O3vVfnxk6P7\n...\nYWw+HiFJh9XQpRUtv9PV8L8AqFFfMdsOpT6pgC+aA/WB\n-----END PRIVATE KEY-----"
+}
+    \end{minted}
+    \caption{Request for the experiment test case no.~2}\label{fig:test_case_2}
+\end{figure}
+
+The request is performed using a private key corresponding to the certificate used for participant with ID 1, created in the previous test.
+The private key is redacted for privacy reasons.
+The request leads to the creation of \textit{ServiceOffering}, \textit{DataResource}, \textit{SoftwareResource}, \textit{InstantiatedVirtualResource}, \textit{ServiceAccessPoint}, \textit{DataProductDescription}, \textit{DatasetDescription}, and \textit{DataUsage} Gaia-X Credentials and the \textit{license}, \textit{terms-and-conditions} and \textit{terms-of-usage} files.
+
+Upon successful execution, the Carecentive API shall respond with the HTTP code 201 and return the created data product model with links to all created Gaia-X Credentials.
+
+Next, a request to the Gaia-X Compliance service is made by performing the request similar to the one performed in the test no.~1, shown in Figure~\ref{fig:test_case_1_compliance}.
+Contrary to the previous test, the \texttt{ServiceOffering}, \texttt{DataResource}, \texttt{SoftwareResource}, \texttt{InstantiatedVirtualResource}, and \texttt{ServiceAccessPoint} Gaia-X Credentials are packed into the VP body.
+
+A response with HTTP code 201 and a compliance VC issued by the Compliance Trust Anchor in the response body is expected.
 
 \section{Evaluation}\label{sec:evaluation}
 
