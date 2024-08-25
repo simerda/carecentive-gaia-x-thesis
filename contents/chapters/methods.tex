@@ -268,9 +268,9 @@ To judge the proper functioning of the Carecentive data-exchange module, service
     \item Obtaining Gaia-X compliance for Participant-related Credentials
     \item Obtaining Gaia-X compliance for ServiceOffering-related Credentials
     \item Obtaining Gaia-X compliance for DataProduct-related Credentials
-    \item Performing exchange of questionnaire data
-    \item Performing exchange of questionnaire data
-    \item Performing data exchange with policy negotiation
+    \item Exchange of questionnaire data
+    \item Exchange of Withings data
+    \item Data exchange with policy negotiation
 \end{enumerate}
 
 Below is detailed information about each of the experiments.
@@ -300,7 +300,7 @@ Content-Type: application/json
     \caption{Request for the experiment test case no.~1}\label{fig:test_case_1}
 \end{figure}
 
-The request is performed using the eIDAS-compliant qualified certificate for electronic signature and a valid FAU's VAT ID.
+The request is performed using the eIDAS-compliant qualified certificate for electronic signature and a valid FAU's VAT~ID.
 The certificate chain and private key are redacted for privacy reasons.
 The request leads to the creation of a DID document, \textit{TermsAndConditions} and \textit{Participant} Gaia-X Credentials.
 The \textit{LegalRegistrationNumber} credential is obtained from the Gaia-X Notary by performing the request shown in Figure~\ref{fig:test_case_1_notary}.
@@ -390,15 +390,181 @@ Contrary to the previous test, the \texttt{ServiceOffering}, \texttt{DataResourc
 
 A response with HTTP code 201 and a compliance VC issued by the Compliance Trust Anchor in the response body is expected.
 
+\subsection{Obtaining Gaia-X compliance for DataProduct-related Credentials}\label{subsec:data-product-compliance}
+
+Since this test relies on the participant record, the possibility of executing this experiment depends on successfully completing test no.~1.
+The test is performed by calling the \texttt{POST} method on the Carecentive's ``\texttt{/api/gaia-x/data-products}'' endpoint using the data in Figure~\ref{fig:test_case_3}:
+
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST /api/gaia-x/data-products HTTP/1.1
+Content-Type: application/json
+
+{
+    "participantId": 1,
+	"title": "Withings",
+	"description": "sample withings description",
+	"termsAndConditions": "sample terms and conditions",
+	"termsOfUsage": "sample terms of usage",
+	"license": "sample license",
+	"policy": "default: allow",
+	"route": "/api/withings",
+	"dataCreatedAt": "2024-08-01 14:32:51",
+	"dataExpiresAt": "2026-02-13 20:15:41",
+	"dataLanguageCode": "en",
+	"privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAM6Q5O3vVfnxk6P7\n...\nYWw+HiFJh9XQpRUtv9PV8L8AqFFfMdsOpT6pgC+aA/WB\n-----END PRIVATE KEY-----"
+}
+    \end{minted}
+    \caption{Request for the experiment test case no.~3}\label{fig:test_case_3}
+\end{figure}
+
+The request is performed using a private key corresponding to the certificate used for participant with ID 1, created in the test no.~1.
+The private key is redacted for privacy reasons.
+The request leads to the creation of \textit{ServiceOffering}, \textit{DataResource}, \textit{SoftwareResource}, \textit{InstantiatedVirtualResource}, \textit{ServiceAccessPoint}, \textit{DataProductDescription}, \textit{DatasetDescription}, and \textit{DataUsage} Gaia-X Credentials and the \textit{license}, \textit{terms-and-conditions} and \textit{terms-of-usage} files.
+
+Upon successful execution, the Carecentive API shall respond with the HTTP code 201 and return the created data product model with links to all created Gaia-X Credentials.
+
+Next, a request to the Gaia-X Compliance service is made by performing the request similar to the one performed in the test no.~1, shown in Figure~\ref{fig:test_case_1_compliance}.
+Contrary to the first test, the \texttt{DataProductDescription}, \texttt{DatasetDescription}, and \texttt{DataUsage} Gaia-X Credentials are packed into the VP body.
+
+A response with HTTP code 201 and a compliance VC issued by the Compliance Trust Anchor in the response body is expected.
+
+\subsection{Exchange of questionnaire data}\label{subsec:exchange-of-questionnaire-data}
+
+Since this test relies on the \textit{questionnaire} data product record, the possibility of executing this experiment depends on the successful completion of at least the first phase of the test no.~2 (call to the Carecentive API).
+
+The experiment is executed as outlined in the Sections~\ref{subsec:data-contracting} and~\ref{subsec:data-consumption}.
+
+The experiment is considered successful upon passing the following steps:
+\begin{enumerate}
+    \item Successful contracting resulting in a contract signed by the producer and consumer parties
+    \item Successful issuance of an access token upon presenting the contract
+    \item Successful fetch of the questionnaire data
+\end{enumerate}
+
+\subsection{Exchange of Withings data}\label{subsec:exchange-of-withings-data}
+
+Since this test relies on the \textit{Withings} data product record, the possibility of executing this experiment depends on the successful completion of at least the first phase of the test no.~3 (call to the Carecentive API).
+
+The experiment is executed as outlined in the Sections~\ref{subsec:data-contracting} and~\ref{subsec:data-consumption}.
+
+The experiment is considered successful upon passing the following steps:
+\begin{enumerate}
+    \item Successful contracting resulting in a contract signed by the producer and consumer parties
+    \item Successful issuance of an access token upon presenting the contract
+    \item Successful fetch of the Withings data
+\end{enumerate}
+
+\subsection{Data exchange with policy negotiation}\label{subsec:data-exchange-with-policy-negotiation}
+
+Since this test relies on the participant record, the possibility of executing this experiment depends on successfully completing test no.~1.
+The test is performed by calling the \texttt{POST} method on the Carecentive's ``\texttt{/api/gaia-x/data-products}'' endpoint using the data in Figure~\ref{fig:test_case_6}, replacing the \texttt{\{policy\}} placeholder with policy defined in Figure~\ref{fig:test_case_6_policy}:
+
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+POST /api/gaia-x/data-products HTTP/1.1
+Content-Type: application/json
+
+{
+    "participantId": 1,
+	"title": "Questionnaires",
+	"description": "sample questionnaire description",
+	"termsAndConditions": "sample terms and conditions",
+	"termsOfUsage": "sample terms of usage",
+	"license": "sample license",
+	"policy": "{policy}",
+	"route": "/api/questionnaires",
+	"dataCreatedAt": "2024-07-01 12:00:00",
+	"dataExpiresAt": "2025-01-01 12:00:00",
+	"dataLanguageCode": "en",
+	"privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAM6Q5O3vVfnxk6P7\n...\nYWw+HiFJh9XQpRUtv9PV8L8AqFFfMdsOpT6pgC+aA/WB\n-----END PRIVATE KEY-----"
+}
+    \end{minted}
+    \caption{Request for the experiment test case no.~6}\label{fig:test_case_6}
+\end{figure}
+
+The request is performed using a private key corresponding to the certificate used for participant with ID 1, created in the first test.
+The private key is redacted for privacy reasons.
+The request leads to the creation of \textit{ServiceOffering}, \textit{DataResource}, \textit{SoftwareResource}, \textit{InstantiatedVirtualResource}, \textit{ServiceAccessPoint}, \textit{DataProductDescription}, \textit{DatasetDescription}, and \textit{DataUsage} Gaia-X Credentials and the \textit{license}, \textit{terms-and-conditions} and \textit{terms-of-usage} files.
+
+%TODO: update UUIDs based on a generated data product
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{json}
+{
+ "@context": "https://www.w3.org/ns/odrl.jsonld",
+ "@type": "Set",
+ "uid": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/490c21de-f9a6-4e46-b3ee-057eb396b5ce/policy.json",
+ "permission": [
+   {
+     "target": "https://gaia-x-dev.simerda.dev/api/questionnaires",
+     "assignee": "Data Consumer",
+     "action": "use",
+     "duty": [
+       {
+         "assigner": "Data Provider",
+         "assignee": "Data Consumer",
+         "action": [
+           {
+             "value": "compensate",
+             "refinement": [
+               {
+                 "leftOperand": "payAmount",
+                 "operator": "eq",
+                 "rightOperand": { "@value": "100.00", "@type": "xsd:decimal" },
+                 "unit": "https://dbpedia.org/resource/Euro"
+               }
+             ]
+           }
+         ]
+       }
+     ]
+   }
+ ],
+ "obligation": [
+   {
+     "target": "https://gaia-x-dev.simerda.dev/api/questionnaires",
+     "assigner": "Data Consumer",
+     "assignee": "Data Provider",
+     "action": "distribute"
+   }
+ ]
+}
+    \end{minted}
+    \caption{Policy used for the experiment test case no.~6, obliging the data provider to allow access to data upon the payment of 100~\char"20AC~}\label{fig:test_case_6_policy}
+\end{figure}
+
+Upon successful execution, the Carecentive API shall respond with the HTTP code 201 and return the created data product model with links to all created Gaia-X Credentials.
+
+The experiment is considered successful upon passing the following steps:
+\begin{enumerate}
+    \item Rejection of the policy by consumer
+    \item Counter-proposal of a policy requiring the payment of 50~\char"20AC~ for access to the data
+    \item Acceptance of the counter-proposal by the data provider
+    \item Successful contract signing by the producer and consumer
+    \item Successful issuance of an access token upon presenting the contract
+    \item Successful fetch of the questionnaire data
+\end{enumerate}
+
 \section{Evaluation}\label{sec:evaluation}
 
-In order to evaluate the actual state of the Gaia-X ecosystem, the following tests will be performed with using our implementation of the Carecentive exchange module.
+The conducted experiments are evaluated into three predefined categories, which represent the outcome of each experiment:
 
-\begin{enumerate}
-    \item Obtaining Gaia-X compliance
-    \item Creating Gaia-X credentials for data products
-    \item Performing data exchange with questionnaire data
-    \item Performing data exchange with withings data
-\end{enumerate}
+\begin{itemize}
+    \item \textit{Pass} --- The experiment was successful, passing all steps of the test and resulted in the expected outcome as defined in the Section~\ref{sec:experiments}.
+    \item \textit{Fail} --- The experiment failed, due to the failure of one or multiple steps or the outcome differed from the expected outcome as defined in the Section~\ref{sec:experiments}.
+    \item \textit{Unable to Conduct} --- The experiment couldn't be conducted due to unsatisfied preconditions
+\end{itemize}
+
+In the case the experiment results in the \textit{Fail} outcome, reason(s) for failure are provided.
+If the experiment results in the \textit{Unable to Conduct} outcome, the preconditions that weren't satisfied and led to the inability to conduct the experiment are provided.
+They can be one of the following:
+\begin{itemize}
+    \item Failure of a prerequisite test --- The test depends on another test, which failed.
+    \item Missing XFSC component --- The test uses a component from the XFSC reference, which is not available.
+    \item GXDCH services unreachable --- The test uses a service that is part of the GXDCH, and none of the instances were running when the experiment was conducted.
+\end{itemize}
 
 The results of these tests are presented in the following chapter.
