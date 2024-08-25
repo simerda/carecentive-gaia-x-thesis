@@ -1,16 +1,119 @@
 \chapter{Results}\label{ch:results}
 
 \begin{chapterabstract}
-    In this chapter, we present the results gathered based on the methods discussed in Chapter~\ref{ch:methods}.
+    This chapter features the results of the experiments that were conducted, which are presented in Chapter~\ref{ch:methods}.
+    For clarity, the experiment evaluations are discussed separately in their sections.
+    The experiments examine the working state and functionality of the features in the Gaia-X Ecosystem.
 \end{chapterabstract}
 
-\section{Obtaining Gaia-X compliance}\label{sec:obtaining-gaia-x-compliance}
+\section{Obtaining Gaia-X compliance for Participant-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-participant-related-credentials}
 
+\textbf{Result}: \textit{Pass}
+\\
+\textbf{Comments}: \texttt{LegalRegistrationNumber}, \texttt{TermsAndConditions}, and \texttt{Participant} Gaia-X Credentials were successfully created and compliance for them was obtained.
 
-\section{Creating Gaia-X credentials for data products}\label{sec:creating-gaia-x-credentials-for-data-products}
+\section{Obtaining Gaia-X compliance for ServiceOffering-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-serviceoffering-related-credentials}
 
+\textbf{Result}: \textit{Fail}
+\\
+\textbf{Comments}: \texttt{ServiceOffering}, \texttt{DataResource}, \texttt{SoftwareResource}, \texttt{InstantiatedVirtualResource}, and \texttt{ServiceAccessPoint} Gaia-X Credentials were created successfully, but the Gaia-X Compliance returned an error.
+The exact response from Compliance can be seen in Figure~\ref{fig:service_offering_compliance_response}.
+The response indicates a user error, which the response body narrows down to the \texttt{exposedThrough} attribute of the \texttt{DataResource} Credential.
 
-\section{Performing data exchange with questionnaire data}\label{sec:performing-data-exchange-with-questionnaire-data}
+Upon examining the Gaia-X Registry, the database of the trusted credential shapes mandates a link to a Credential of type \texttt{ServiceOffering}.
+The \texttt{DataResource} Credential created by Carecentive backend, however, links a credential of type \texttt{InstantiatedVirtualResource}, which is in line with the Gaia-X Trust Framework specifications~\cite{gaiax_trust_framework}.
+The mismatch between documentation requirements and the formal implemented vocabulary is probably the reason of failure.
 
+\begin{figure}[h]
+    \centering
+    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+HTTP/1.1 409 Conflict
+Content-Type: application/json
 
-\section{Performing data exchange with withings data}\label{sec:performing-data-exchange-with-withings-data}
+{
+	"statusCode": 409,
+	"message": {
+		"conforms": false,
+		"results": [
+			"ERROR: https://gaia-x-dev.simerda.dev/gaia-x/john-doe/38dec236-0437-496a-b3c1-bda7716e3bd5/data-resource.json#cs https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#exposedThrough: "
+		]
+	},
+	"error": "Conflict"
+}
+    \end{minted}
+    \caption{Response from Gaia-X Compliance service upon trying to obtain compliance for ServiceOffering-related credentials}\label{fig:service_offering_compliance_response}
+\end{figure}
+%TODO: replace with actual response
+
+\section{Obtaining Gaia-X compliance for DataProduct-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-dataproduct-related-credentials}
+
+\textbf{Result}: \textit{Fail}
+\\
+\textbf{Comments}: \texttt{DataProductDescription}, \texttt{DatasetDescription}, and \texttt{DataUsage} Gaia-X Credentials were created successfully, but the Gaia-X Compliance returned an error.
+The exact response from Compliance can be seen in Figure~\ref{fig:data_product_compliance_response}.
+The response indicates a user error, which the response body narrows down to a shape not being recognized by the Registry.
+This means that the Gaia-X credentials defined by the Gaia-X Data Exchange specifications~\cite{gaiax_data_exchange_document} were not yet implemented into the running GXDCH services.
+
+\begin{figure}[h]
+	\centering
+	\begin{minted}[bgcolor=LightGray,breaklines]{http}
+HTTP/1.1 409 Conflict
+Content-Type: application/json
+
+{
+	"message": "VerifiableCrdential contains a shape that is not defined in registry shapes",
+	"error": "Conflict",
+	"statusCode": 409
+}
+	\end{minted}
+	\caption{Response from Gaia-X Compliance service upon trying to obtain compliance for DataProduct-related credentials}\label{fig:data_product_compliance_response}
+\end{figure}
+
+\section{Exchange of questionnaire data}\label{sec:exchange-of-questionnaire-data}
+
+\textbf{Result}: \textit{Pass}
+\\
+\textbf{Comments}: The data exchange contracting process is carried out successfully, which results in a valid contract.
+The contract is then used for a successful issuance of the access token, upon which the consumer successfully fetches the questionnaire data.
+
+\section{Exchange of Withings data}\label{sec:exchange-of-withings-data}
+
+\textbf{Result}: \textit{Pass}
+\\
+\textbf{Comments}: The data exchange contracting process is carried out successfully, which results in a valid contract.
+The contract is then used for a successful issuance of the access token, upon which the consumer successfully fetches the Withing data.
+
+\section{Data exchange with policy negotiation}\label{sec:data-exchange-with-policy-negotiation}
+
+\textbf{Result}: \textit{Unable to Conduct}
+\\
+\textbf{Reason}: \textit{Missing XFSC component}
+\\
+\textbf{Comments}: The experiment cannot be conducted due to a missing ``\textit{Data Contracting Services}'' component from the XFSC reference implementation.
+The component is still under development and should provide policy negotiation and contracting services once the development is finished.
+
+\section{Summary}\label{sec:summary}
+
+As previous sections showcase, the outcome of the experiments is the following.
+
+\begin{longtable}{ |p{7cm}|p{3.5cm}|p{1cm}|p{1cm}| }
+	\hhline{----}
+	\textbf{Experiment} & \textbf{Unable to Conduct} & \textbf{Pass} & \textbf{Fail}\\
+	\hhline{----}
+	\textbf{\texttt{Participant} Compliance} &&X&\\
+	\hhline{----}
+	\textbf{\texttt{ServiceOffering} Compliance} &&&X\\
+	\hhline{----}
+	\textbf{\texttt{DataProduct} Compliance} &&&X\\
+	\hhline{----}
+	\textbf{Questionnaire Data Exchange} &&X&\\
+	\hhline{----}
+	\textbf{Withings Data Exchange} &&X&\\
+	\hhline{----}
+	\textbf{Data Exchange with Policy Negotiation} &X&&\\
+	\hhline{----}
+	\textbf{Sum} &1&3&3\\
+	\hhline{----}
+	\caption{Overview of the results of the conducted experiments}
+	\label{tab:results}
+\end{longtable}
