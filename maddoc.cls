@@ -145,7 +145,7 @@ angenommen wurde. Alle Ausführungen, die wörtlich oder sinngemäß
 Die Richtlinien des Lehrstuhls für Bachelor- und Masterarbeiten
 habe ich gelesen und anerkannt, insbesondere die Regelung des
 Nutzungsrechts. \\[15mm]
-Erlangen, den \todayPreamble \hspace{6.0cm} \\[10mm]
+Prag, den \todayPreamble \hspace{6.0cm} \\[10mm]
 \cleardoublepage}
 
 \endinput
