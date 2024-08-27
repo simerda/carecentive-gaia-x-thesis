@@ -50,7 +50,7 @@ After the implementation is finished, a set of predefined data exchange scenario
 This is done with in the specific use-case of the palliative care trial.
 
 The implementation task was to design and implement a workflow, which would allow Carecentive users with the \texttt{admin} role to register the questionnaire and Withings\footnote{Withings is a French company developing smart wearable devices for measuring vital signs, activity and sleep monitoring. Carecentive integrates the Withings API to download the data into its database.} data via Gaia-X-compliant processes to allow data consumption to users outside of Carecentive.
-To be specific, the \texttt{``/api/withings''} and \texttt{``/api/questionnaires''} API resources, which are protected by a temporary valid token issued upon user login shall be able to accept a new type of token a non-Gaia-X user obtains upon successfully going through the Gaia-X contracting process.
+To be specific, the \texttt{``/api/measurements''} and \texttt{``/api/questionnaires''} API resources, which are protected by a temporary valid token issued upon user login shall be able to accept a new type of token a non-Gaia-X user obtains upon successfully going through the Gaia-X contracting process.
 
 To achieve the goal of enabling Carecentive users to share data in a Gaia-X-compliant manner, a collection of new resources was developed and exposed on the Carecentive API.
 A list of all provided endpoints with their description, authorization and HTTP method is available in Table~\ref{tab:endpoints}; \texttt{``/api''} prefix is common for all endpoints and is omitted for brevity.
@@ -130,7 +130,7 @@ This then enables the creation of the \textit{LegalRegistrationNumber}, \textit{
 \subsection{Data Product Registration}\label{subsec:data-product-registration}
 
 Once a participant is created, it can be used for exposing data products under it.
-This is achieved by sending a \texttt{POST} request to the ``\texttt{/api/gaia-x/data-products}'' endpoint, specifying the participant ID in Carecentive and the route to be shared (at the moment, this can be ``\texttt{/api/questionnaires}'' or ``\texttt{/api/withings}'').
+This is achieved by sending a \texttt{POST} request to the ``\texttt{/api/gaia-x/data-products}'' endpoint, specifying the participant ID in Carecentive and the route to be shared (at the moment, this can be ``\texttt{/api/questionnaires}'' or ``\texttt{/api/measurements}'').
 Following this, you need to include the information used to create the Gaia-X credentials.
 For the creation of credentials, the inclusion of \texttt{title}, \texttt{description}, \texttt{termsAndConditions}, \texttt{termsOfUsage}, \texttt{license}, and \texttt{policy} is mandatory.
 The inclusion of \texttt{dataCreatedAt}, \texttt{dataExpiresAt}, and \texttt{dataLanguageCode} is optional.
@@ -220,7 +220,7 @@ The user first has to obtain a temporarily valid access token.
 This is done by sending a \texttt{POST} request to the ``\texttt{/api/gaia-x/authentication}'' endpoint with the data contract attached as the request body.
 The Carecentive server verified the validity of the contract and issues an access token valid for 10 minutes provided the validation is successful.
 
-The data consumer can then use the token to access the endpoint route specified in the data product (``\texttt{/api/questionnaires}'' or ``\texttt{/api/withings}'').
+The data consumer can then use the token to access the endpoint route specified in the data product (``\texttt{/api/questionnaires}'' or ``\texttt{/api/measurements}'').
 To ensure successful authentication, the user must call the endpoint with the access token presented in the \texttt{Authorization} header as a \texttt{Bearer} token.
 
 \subsection{Code Organization}\label{subsec:code-organization}
@@ -409,7 +409,7 @@ Content-Type: application/json
 	"termsOfUsage": "sample terms of usage",
 	"license": "sample license",
 	"policy": "default: allow",
-	"route": "/api/withings",
+	"route": "/api/measurements",
 	"dataCreatedAt": "2024-08-01 14:32:51",
 	"dataExpiresAt": "2026-02-13 20:15:41",
 	"dataLanguageCode": "en",
