@@ -6,34 +6,18 @@
 
 \section{Credentials}\label{sec:credentials}
 
-Gaia-X Credentials, formerly known as Gaia-X Self-Descriptions, are the main conceptual building blocks of the Gaia-X ecosystem~\cite{gaiax_architecture_document}.
-They formalize all the claims and descriptions made by all parties participating in the ecosystem.
-They are based on the formal \textit{Verifiable Credentials Data Model}~\cite{verifiable_credentials} specification issued by the \textit{World Wide Web Consortium} (W3C) and on the concept of Linked Data (LD).
-
-Verifiable Credentials are inspired by physical credentials like government-issued passports, driving licenses and university diplomas.
-They contain information about some statements the credential holder is trying to prove (citizenship, achieved education, etc.) and are secured by some protective element from the issuer, proving the veracity of the document, which the verifier can verify.
-Their software counterpart (VCs) work in a similar way.
-They contain data with relevance to the holder, which is structured based on well-defined templates called schemas or vocabularies, which describe which claims can be made in the document.
-
-The claim consists of a subject (credential holder), property and a value, for example, Pat being an alumni of ``Example University''~\ref{fig:verifiable-credential-claim}.
-These claims are then packed into the credential body along with metadata such as the issuer, issuance date or the expiration date.
-Although other formats are permitted, the base format VCs are encoded in is the JSON (JavaScript Object Notation) format or more specifically the extension for Linked Data --- JSON-LD, this ensures the data is machine-readable and can be interlinked between each other.
-The issuer then signs the credential using digital signature proving, which is inserted into the VC's proof section.
-This provides a machine-readable cryptographical proof, which secures the credential and can be used by the verifier to verify holder's claims.
-
-
-Gaia-X Credentials, formerly known as Gaia-X Self-Descriptions, are the main conceptual building blocks of the Gaia-X ecosystem~\cite{gaiax_architecture_document}.
+Gaia-X Credentials, formerly known as Gaia-X Self-Descriptions, are the main conceptual building blocks of the \textit{Gaia-X ecosystem}~\cite{gaiax_architecture_document}.
 They formalize all the claims and descriptions made by all parties participating in the ecosystem.
 They are based on the formal \textit{Verifiable Credentials Data Model}~\cite{verifiable_credentials} specification issued by the \textit{World Wide Web Consortium} (W3C) and the Linked Data (LD) concept.
 
-Verifiable Credentials are inspired by physical credentials like government-issued passports, driving licenses and university diplomas.
+Verifiable Credentials are inspired by physical credentials like \textit{government-issued passports}, \textit{driving licenses} and \textit{university diplomas}.
 They contain information about some statements the credential holder is trying to prove (citizenship, achieved education, etc.) and are secured by some protective element from the issuer, establishing the document's veracity, which the verifier can verify.
 Their software counterpart (VCs) work in a similar way.
-They contain data with relevance to the holder, which is structured based on well-defined templates called schemas or vocabularies, which describe which claims can be made in the document.
+They contain data with relevance to the holder, which is structured based on well-defined templates called \textit{schemas} or \textit{vocabularies}, which describe which claims can be made in the document.
 
 The claim consists of a subject (credential holder), property and a value, for example, Pat being an alumnus of ``Example University''~\ref{fig:verifiable-credential-claim}.
 These claims are then packed into the credential body along with metadata such as the issuer, issuance date or the expiration date.
-Although other formats are permitted, the base format VCs are encoded in is the JSON (JavaScript Object Notation) format or, more specifically, the extension for Linked Data --- JSON-LD; this ensures the data is machine-readable and can be interlinked between each other.
+Although other formats are permitted, the base format VCs are encoded in is the JSON (JavaScript Object Notation) format or, more specifically, the extension for \textit{Linked Data} --- JSON-LD; this ensures the data is machine-readable and can be interlinked between each other.
 The issuer then signs the credential using a digital signature inserted into the VC's proof section.
 This process provides a machine-readable cryptographical proof, which secures the credential and can be used by the verifier to verify the holder's claims.
 
@@ -49,15 +33,9 @@ This process provides a machine-readable cryptographical proof, which secures th
     \caption{Verifiable Credential roles and information flow~\cite{verifiable_credentials}. Multiple claims are then packed into one Verifiable Credential.}\label{fig:verifiable-credentials}
 \end{figure}
 
-Gaia-X utilizes VCs for almost all of the objects in the ecosystem from the \texttt{Participant}, serving as a description of a natural person or a legal entity, to the \texttt{ServiceOffering} and \texttt{Resource} credentials, specifying the offered services or data.
-Gaia-X provides the so-called \textit{Gaia-X Trust Framework} via which the syntactic correctness, schema validity, cryptographic signature validation, attribute value consistency and attribute value verification is enforced~\cite{gaiax_architecture_document}.
-This is done to ensure compliance with the minimal requirements defined by Gaia-X specifications is met.
-However, thanks to the possible extensibility of the VC schemas, each federation can impose new rules for the credentials which federation Participants have to obey.
-
-
 Gaia-X utilizes VCs for almost all of the objects in the ecosystem, from the \texttt{Participant}, serving as a description of a natural person or a legal entity, to the \texttt{ServiceOffering} and \texttt{Resource} credentials, specifying the offered services or data.
 Gaia-X provides the so-called Gaia-X Trust Framework, which enforces syntactic correctness, schema validity, cryptographic signature validation, attribute value consistency, and attribute value verification~\cite{gaiax_architecture_document}.
-The validation process ensures compliance with the minimal requirements defined by Gaia-X specifications is met.
+The validation process ensures \textit{compliance} with the minimal requirements defined by Gaia-X specifications is met.
 However, thanks to the possible extensibility of the VC schemas, each federation can impose new rules for the credentials that federation Participants must obey.
 
 \begin{figure}
@@ -530,13 +508,13 @@ It is not a standalone Gaia-X Credential but an object that needs to be specifie
 When creating a Verifiable Credential, it is necessary to identify the issuer unambiguously.
 Hence, the W3C stipulates that the value of the \texttt{issuer} property must be a URL (Uniform Resource Locator) or object containing property \texttt{id} with URL as the value~\cite{verifiable_credentials}.
 Gaia-X further restricts this rule, requiring the \texttt{issuer} property to contain a Decentralized Identifier (DID)~\cite{did}.
-DIDs are designed in a way to be used without the need to use centralized registries, which fits nicely into the ideology of Gaia-X.
+DIDs are designed in a way to be used without the need to use \textit{centralized registries}, which fits nicely into the ideology of Gaia-X.
 While a third party may be needed to enable the discovery of information related to a DID, the DID design allows its controller to prove its control over the Decentralized Identifier without requiring permission from any other party.
 
 Figure~\ref{fig:did_structure} depicts the general structure of a Decentralized Identifier.
 Gaia-X specifically uses the DID \texttt{web} method~\cite{didweb}, which allows the holder to publish a DID document on a public webserver that is accessible using the HTTPS protocol.
 For example, the DID \texttt{did:web:gaia-x-dev.simerda.dev:gaia-x:john-doe} gets resolved to the URL \url{https://gaia-x-dev.simerda.dev/gaia-x/john-doe/did.json}.
-The resolved URL then hosts a document containing the ID itself, mainly the verification method and algorithms used with this DID.
+The resolved URL then hosts a document containing the ID itself, mainly the \textit{verification method} and \textit{algorithms} used with this DID.
 The example document corresponding to the example DID can be seen in Figure~\ref{fig:did_document}; it specifies the X.509 certificate used and the algorithm used for signing (RS256).
 In relation to VCs and Gaia-X Credentials, the verifier of the credential can resolve the DID document and use the information provided to verify the signature included in the credential.
 
@@ -580,10 +558,10 @@ In relation to VCs and Gaia-X Credentials, the verifier of the credential can re
 \section{Trust Anchors}\label{sec:trust-anchors}
 
 Trust Anchors are entities that underpin the claims of Participants and are endorsed by Gaia-X~\cite{gaiax_trust_framework}.
-They facilitate the processing of claims made by Participants and shall do so via fair and transparent procedures, thus affirming the trust in otherwise mere self-declared statements.
+They facilitate the processing of claims made by Participants and shall do so via \textit{fair} and \textit{transparent} procedures, thus affirming the trust in otherwise mere self-declared statements.
 Trust Anchors may underpin any aspect of the Participant's operation; however, Gaia-X will only be interested in aspects relating to relevant criteria stemming from the issued specifications.
 
-In reality, the abstract term ``Trust Anchors'' primarily refers to the Trust Service Providers (TSPs) or Certification Authorities (CAs) from which a Participant is permitted to obtain digital certificates.
+In reality, the abstract term ``Trust Anchors'' primarily refers to the Trust Service Providers (TSPs) or Certification Authorities (CAs) from which a Participant is permitted to obtain \textit{digital certificates}.
 A notable exception is for the Credential \texttt{LegalRegistrationNumber}, where the \textit{Gaia-X Association} nominated itself as a valid Trust Anchor to validate legal persons' registration numbers via the notary service.
 These certificates are necessary for signing Gaia-X Credentials to ensure trust and compliance with Gaia-X standards.
 The exact permissible Trust Anchors are defined in Table~\ref{tab:trust_anchors}.
@@ -620,11 +598,11 @@ The exact permissible Trust Anchors are defined in Table~\ref{tab:trust_anchors}
 
 Policies in the Gaia-X ecosystem are statements, rules, or assertions that specify an entity's correct or expected behavior~\cite{gaiax_architecture_document}.
 Gaia-X defines policies for all service providers and service offerings.
-They specify, for example, the rules governing privacy and cybersecurity expressed indirectly in the Gaia-X specification as rules for the attributes in the Gaia-X credentials.
+They specify, for example, the rules governing \textit{privacy} and \textit{cybersecurity} expressed indirectly in the Gaia-X specification as rules for the attributes in the Gaia-X credentials.
 In addition to the general policies, the Gaia-X ecosystem allows Participants to define further restrictions by using so-called policy descriptions.
 
 The policies on the consumer side can be used to describe restrictions when searching for a service or resource they want to consume, for example, the location of the service provider or a particular service level~\cite{gaiax_architecture_document}.
-On the other hand, the provider can define their policies on the Gaia-X credentials (Service Offering, Data Resource, etc.), imposing usage restrictions on the provided service, for example, restricting the timeframe when the consumer can access provided data.
+On the other hand, the provider can define their policies on the Gaia-X credentials (Service Offering, Data Resource, etc.), imposing \textit{usage restrictions} on the provided service, for example, restricting the timeframe when the consumer can access provided data.
 Both of these participant-defined policies are called \textit{``Policy descriptions.''}
 The relation between different types of policies is visually depicted in Figure~\ref{fig:gaiax_policies}.
 
@@ -640,7 +618,7 @@ A specific subset of Gaia-X policies are policies for data exchange~\cite{gaiax_
 They are divided into two categories: contract policies and runtime policies.
 
 Contract policies serve as an interoperable human and machine-readable basis for a contract between the participants.
-They contain access and usage control policies, denoted in an ORDL DSL\footnote{Domain Specific Language is a programming language with a higher level of abstraction optimized for a specific set of problems~\cite{domain_specific_languages}.}.
+They contain \textit{access} and \textit{usage control} policies, denoted in an ORDL DSL\footnote{Domain Specific Language is a programming language with a higher level of abstraction optimized for a specific set of problems~\cite{domain_specific_languages}.}.
 ORDL is used to describe the usage control and access control policies:
 
 \begin{itemize}
@@ -755,7 +733,7 @@ locatedInEEA if input.processingLocation.countryCode == data.EEA[_][_]
     \caption{Example of a REGO policy specifying the required data retention and data location~\cite{gaiax_compliance_as_a_code}.}\label{fig:rego_policy_example}
 \end{figure}
 
-The fact that policies in Gaia-X are machine-readable allows for automated contract negotiation between provider and consumer~\cite{gaiax_data_exchange_document}.
+The fact that policies in Gaia-X are machine-readable allows for \textit{automated contract negotiation} between provider and consumer~\cite{gaiax_data_exchange_document}.
 The consumer can search for the desired service offering, initiate a contract negotiation sequence, and exchange counter-offers until an agreement is reached, which is confirmed by all participants electronically signing the contract.
 
 \section{Trust Framework Components}\label{sec:trust-framework-components}

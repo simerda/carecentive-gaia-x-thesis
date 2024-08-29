@@ -1,9 +1,9 @@
 \chapter{Methods}\label{ch:methods}
 
 \begin{chapterabstract}
-    The following chapter outlines the methodology used to assess the Gaia-X initiative, the reference framework implementation XFSC, and to answer the research questions stated in the introductory Chapter~\ref{ch:introduction}.
-    The main method of work is implementation of a Gaia-X-compliant data exchange module, serving as a proof of concept.
-    Based on this, the Gaia-X-related technical challenges are noted.
+    The following chapter outlines the \textit{methodology} used to assess the Gaia-X initiative, the reference framework implementation XFSC, and to answer the \textit{research questions} stated in the introductory Chapter~\ref{ch:introduction}.
+    The main method of work is implementation of a Gaia-X-compliant data exchange module, serving as a \textit{proof of concept}.
+    Based on this, the Gaia-X-related \textit{technical challenges} are noted.
     Lastly, a series of experiments is presented as a way to ensure proper functionality of the XFSC services, followed with a section on its evaluation.
 \end{chapterabstract}
 
@@ -43,7 +43,7 @@ Thanks to the Carecentive framework's extensibility, other students' theses unde
 
 In order to assess the functionality of the Gaia-X ecosystem, a partial goal of this thesis is to implement a Gaia-X-compliant module for the exchange of the data stored in the Carecentive app.
 During the implementation of the exchange module, serving as a proof of concept, any technical or other issues with the Gaia-X specifications and the XFSC software are noted.
-After the implementation is finished, a set of predefined data exchange scenarios is run to verify the correct functionality of data exchange module implementation and, mainly, whether the Gaia-X specifications and XFSC software are ready for real-world usage.
+After the implementation is finished, a set of predefined data exchange scenarios is run to verify the \textit{correct functionality} of data exchange module implementation and, mainly, whether the Gaia-X specifications and XFSC software are ready for \textit{real-world usage}.
 This is done within the specific use case of the palliative care trial.
 
 The implementation task was to design and implement a workflow that would allow Carecentive users with the \texttt{admin} role to register the questionnaire and Withings\footnote{Withings is a French company developing smart wearable devices for measuring vital signs, activity, and sleep monitoring. Carecentive integrates the Withings API to download the data into its database.} data via Gaia-X-compliant processes to allow data consumption by users outside of Carecentive.
@@ -166,7 +166,7 @@ Crucially, the following general Gaia-X credentials are created: \textit{Service
 Contracting is initiated by the user sending a \texttt{POST} request to the ``\texttt{/api\-/gaia-x\-/data-products\-/:dataProductId\-/contracts}'' endpoint, which expects a JSON object with a single attribute \texttt{participantUrl}, which has to be a resolvable URL to the user's valid Participant Credential.
 The backend fetches the Participant Credential, its issuer's DID document, and the DID's certificate.
 Afterwards, the Participant Credential is validated and its signature is verified against the DID certificate.
-Lastly, the server creates a contract proposal based on the selected data product and provided hashes of the provided participant, DID document, user certificate, and the contract proposal are stored to prevent being tampered with during the contracting phase.
+Lastly, the server creates a \textit{contract proposal} based on the selected data product and provided \textit{hashes} of the provided participant, DID document, user certificate, and the contract proposal are stored to \textit{prevent being tampered with} during the contracting phase.
 The contract proposal record is then stored in the DB, and the proposal is returned to the user for signing.
 With that, the contract proposal moves to the state ``\texttt{CONSUMER\_SIGNATURE\_PENDING}.''
 
@@ -176,15 +176,15 @@ Once the user has selected the desired data product, they need to take note of i
 
 Now, the user has to sign the contract, by which they confirm agreement with the conditions of usage.
 The signature has to be formatted as a JWS2020 (JSON Web Signature)\footnote{\url{https://www.w3.org/TR/vc-jws-2020/}}, which is stored in the form of three base64-encoded values separated by a dot --- \texttt{[header].[content].[signature]}.
-This process follows the standard VC and Gaia-X signing scheme, where the header contains information about the used signing algorithm, and the VC content is canonized using the \texttt{URDNA2015\footnote{\url{https://www.w3.org/community/reports/credentials/CG-FINAL-rdf-dataset-canonicalization-20221009/}}} algorithm.
-Then, a SHA256 hash is computed and signed with the keypair associated with the participant's DID.
-Gaia-X then mandates the removal of the \texttt{[content]} part of the JWS (the hash value) since it's redundant as the signature is attached to the VC anyway.
+This process follows the standard VC and Gaia-X \textit{signing scheme}, where the header contains information about the used \textit{signing algorithm}, and the VC content is canonized using the \texttt{URDNA2015\footnote{\url{https://www.w3.org/community/reports/credentials/CG-FINAL-rdf-dataset-canonicalization-20221009/}}} algorithm.
+Then, a \texttt{SHA256} hash is computed and signed with the keypair associated with the participant's DID.
+Gaia-X then mandates the removal of the \texttt{[content]} part of the JWS (the hash value) since it's \textit{redundant} as the signature is attached to the VC anyway.
 The final format of the signature is the following: \texttt{[header]..[signature]}.
 
 Once the contract proposal is signed by the user and attached under the ``\texttt{proof}'' attribute of the contract, they can upload it to the Carecentive API, where it will await signature from the admin.
 This submission of the signed contract proposal is made by sending a \texttt{PUT} request to the endpoint ``\texttt{/api\-/gaia-x\-/data-products\-/:dataProductId\-/contracts\-/:dataProduct\-ContractId}'' with the signed contract attached as the request body.
 
-The Carecentive backend re-checks the integrity of the Participant credential, DID document, user certificate, and contract contents.
+The Carecentive backend re-checks the \textit{integrity} of the Participant credential, DID document, user certificate, and contract contents.
 After all checks are successfully passed, the contract signature is verified against the participant's certificate.
 If the signature is verified successfully, the contract proposal moves to the state ``\texttt{PRODUCER\_SIGNATURE\_PENDING}.''
 
@@ -343,7 +343,7 @@ Content-Type: application/json
 
 A response with HTTP code 201 and a compliance VC issued by the Compliance Trust Anchor in the response body is expected.
 
-Upon successfully passing all steps, the Carecentive API responds with the HTTP code 201 and returns the created participant model.
+Upon successfully passing all steps, the Carecentive API responds with the HTTP code 201 and returns the created \textit{participant model}.
 
 \subsection[Service Offering Compliance]{Obtaining Gaia-X compliance for ServiceOffering-related Credentials}\label{subsec:service-offering-compliance}
 
@@ -375,7 +375,7 @@ Content-Type: application/json
 \end{figure}
 
 The request is performed using a private key corresponding to the certificate used for participant with ID 1, created in the previous test.
-The private key is redacted for privacy reasons.
+The \textit{private key} is redacted for privacy reasons.
 The request leads to the creation of \texttt{ServiceOffering}, \texttt{DataResource}, \texttt{SoftwareResource}, \texttt{InstantiatedVirtualResource}, \texttt{ServiceAccessPoint}, \texttt{DataProductDescription}, \texttt{DatasetDescription}, and \texttt{DataUsage} Gaia-X Credentials and the \texttt{license}, \texttt{terms-and-conditions} and \texttt{terms-of-usage} files.
 
 Upon successful execution, the Carecentive API shall respond with the HTTP code 201 and return the created data product model with links to all created Gaia-X Credentials.
@@ -383,7 +383,7 @@ Upon successful execution, the Carecentive API shall respond with the HTTP code 
 Next, a request to the Gaia-X Compliance service is made by performing the request similar to the one carried out in test no.~1, shown in Figure~\ref{fig:test_case_1_compliance}.
 Contrary to the previous test, the \texttt{ServiceOffering}, \texttt{DataResource}, \texttt{SoftwareResource}, \texttt{InstantiatedVirtualResource}, and \texttt{ServiceAccessPoint} Gaia-X Credentials are packed into the VP body.
 
-A response with HTTP code 201 and a compliance VC issued by the Compliance Trust Anchor in the response body is expected.
+A response with HTTP code 201 and a compliance VC issued by the \textit{Compliance Trust Anchor} in the response body is expected.
 
 \subsection[Data Product Compliance]{Obtaining Gaia-X compliance for DataProduct-related Credentials}\label{subsec:data-product-compliance}
 
@@ -547,11 +547,11 @@ The experiment is considered successful upon passing the following steps:
 The conducted experiments are evaluated into three predefined categories, which represent the outcome of each experiment:
 
 Pass --- The experiment was successful, passing all the test steps and resulting in the expected outcome as defined in Section~\ref{sec:experiments}.
-Fail --- The experiment failed due to one or more steps failing or the outcome differing from the expected outcome as defined in Section~\ref{sec:experiments}.
+Fail --- The experiment failed due to one or more steps failing or the outcome \textit{differing} from the expected outcome as defined in Section~\ref{sec:experiments}.
 Unable to Conduct --- The experiment couldn't be conducted due to unsatisfied preconditions.
 
 If the experiment results in the \textit{Fail} outcome, a comment on the reasons for failure is provided.
-If the experiment results in the \textit{Unable to Conduct} outcome, the preconditions that weren't satisfied and led to the inability to conduct the experiment are provided.
+If the experiment results in the \textit{Unable to Conduct} outcome, the \textit{preconditions} that weren't satisfied and led to the inability to conduct the experiment are provided.
 They can be one of the following:
 \begin{itemize}
     \item Failure of a prerequisite test --- The test depends on another test, which failed.
