@@ -6,13 +6,13 @@
     The experiments examine the working state and functionality of the features in the Gaia-X Ecosystem.
 \end{chapterabstract}
 
-\section{Obtaining Gaia-X compliance for Participant-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-participant-related-credentials}
+\section[Participant Compliance]{Obtaining Gaia-X compliance for Participant-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-participant-related-credentials}
 
 \textbf{Result}: \textit{Pass}
 \\
-\textbf{Comments}: \texttt{LegalRegistrationNumber}, \texttt{TermsAndConditions}, and \texttt{Participant} Gaia-X Credentials were successfully created and compliance for them was obtained.
+\textbf{Comments}: \texttt{LegalRegistrationNumber}, \texttt{TermsAndConditions}, and \texttt{Participant} Gaia-X Credentials were successfully created, and their compliance was obtained.
 
-\section{Obtaining Gaia-X compliance for ServiceOffering-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-serviceoffering-related-credentials}
+\section[Service Offering Compliance]{Obtaining Gaia-X compliance for ServiceOffering-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-serviceoffering-related-credentials}
 
 \textbf{Result}: \textit{Fail}
 \\
@@ -20,9 +20,9 @@
 The exact response from Compliance can be seen in Figure~\ref{fig:service_offering_compliance_response}.
 The response indicates a user error, which the response body narrows down to the \texttt{exposedThrough} attribute of the \texttt{DataResource} Credential.
 
-Upon examining the Gaia-X Registry, the database of the trusted credential shapes mandates a link to a Credential of type \texttt{ServiceOffering}.
-The \texttt{DataResource} Credential created by Carecentive backend, however, links a credential of type \texttt{InstantiatedVirtualResource}, which is in line with the Gaia-X Trust Framework specifications~\cite{gaiax_trust_framework}.
-The mismatch between documentation requirements and the formal implemented vocabulary is probably the reason of failure.
+Upon examining the Gaia-X Registry, the database of the trusted credential shapes mandates the value to be a link to a Credential of type \texttt{ServiceOffering}.
+However, the \texttt{DataResource} Credential created by the Carecentive backend links a credential of type \texttt{InstantiatedVirtualResource}, which is in line with the Gaia-X Trust Framework specifications~\cite{gaiax_trust_framework}.
+The mismatch between documentation requirements and the formally implemented vocabulary is probably the reason for failure.
 
 \begin{figure}[h]
     \centering
@@ -35,24 +35,23 @@ Content-Type: application/json
 	"message": {
 		"conforms": false,
 		"results": [
-			"ERROR: https://gaia-x-dev.simerda.dev/gaia-x/john-doe/38dec236-0437-496a-b3c1-bda7716e3bd5/data-resource.json#cs https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#exposedThrough: "
+			"ERROR: https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-resource.json#cs https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#exposedThrough: "
 		]
 	},
 	"error": "Conflict"
 }
     \end{minted}
-    \caption{Response from Gaia-X Compliance service upon trying to obtain compliance for ServiceOffering-related credentials}\label{fig:service_offering_compliance_response}
+    \caption{The response from the Gaia-X Compliance service upon trying to obtain compliance for ServiceOffering-related credentials.}\label{fig:service_offering_compliance_response}
 \end{figure}
-%TODO: replace with actual response
 
-\section{Obtaining Gaia-X compliance for DataProduct-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-dataproduct-related-credentials}
+\section[Data Product Compliance]{Obtaining Gaia-X compliance for DataProduct-related Credentials}\label{sec:obtaining-gaia-x-compliance-for-dataproduct-related-credentials}
 
 \textbf{Result}: \textit{Fail}
 \\
 \textbf{Comments}: \texttt{DataProductDescription}, \texttt{DatasetDescription}, and \texttt{DataUsage} Gaia-X Credentials were created successfully, but the Gaia-X Compliance returned an error.
 The exact response from Compliance can be seen in Figure~\ref{fig:data_product_compliance_response}.
 The response indicates a user error, which the response body narrows down to a shape not being recognized by the Registry.
-This means that the Gaia-X credentials defined by the Gaia-X Data Exchange specifications~\cite{gaiax_data_exchange_document} were not yet implemented into the running GXDCH services.
+The error implies that the Gaia-X credentials defined by the Gaia-X ``\textit{Data Exchange specifications}''~\cite{gaiax_data_exchange_document} have not yet been implemented in the running GXDCH services.
 
 \begin{figure}[h]
 	\centering
@@ -66,22 +65,22 @@ Content-Type: application/json
 	"statusCode": 409
 }
 	\end{minted}
-	\caption{Response from Gaia-X Compliance service upon trying to obtain compliance for DataProduct-related credentials}\label{fig:data_product_compliance_response}
+	\caption{The response from the Gaia-X Compliance service upon trying to obtain compliance for DataProduct-related credentials.}\label{fig:data_product_compliance_response}
 \end{figure}
 
 \section{Exchange of questionnaire data}\label{sec:exchange-of-questionnaire-data}
 
 \textbf{Result}: \textit{Pass}
 \\
-\textbf{Comments}: The data exchange contracting process is carried out successfully, which results in a valid contract.
-The contract is then used for a successful issuance of the access token, upon which the consumer successfully fetches the questionnaire data.
+\textbf{Comments}: The data exchange contracting process is carried out successfully, resulting in a valid contract.
+The contract is then used to successfully issue the access token, upon which the consumer successfully fetches the questionnaire data.
 
 \section{Exchange of Withings data}\label{sec:exchange-of-withings-data}
 
 \textbf{Result}: \textit{Pass}
 \\
-\textbf{Comments}: The data exchange contracting process is carried out successfully, which results in a valid contract.
-The contract is then used for a successful issuance of the access token, upon which the consumer successfully fetches the Withing data.
+\textbf{Comments}: The data exchange contracting process is carried out successfully, resulting in a valid contract.
+The contract is then used to successfully issue the access token, upon which the consumer successfully fetches the Withings data.
 
 \section{Data exchange with policy negotiation}\label{sec:data-exchange-with-policy-negotiation}
 
@@ -89,8 +88,8 @@ The contract is then used for a successful issuance of the access token, upon wh
 \\
 \textbf{Reason}: \textit{Missing XFSC component}
 \\
-\textbf{Comments}: The experiment cannot be conducted due to a missing ``\textit{Data Contracting Services}'' component from the XFSC reference implementation.
-The component is still under development and should provide policy negotiation and contracting services once the development is finished.
+\textbf{Comments}: The experiment cannot be conducted because the ``\textit{Data Contracting Services}'' component is missing from the XFSC reference implementation.
+The component is still under development but should provide policy negotiation and contracting services once it is finished.
 
 \section{Summary}\label{sec:summary}
 
@@ -114,6 +113,6 @@ As previous sections showcase, the outcome of the experiments is the following.
 	\hhline{----}
 	\textbf{Sum} &1&3&2\\
 	\hhline{----}
-	\caption{Overview of the results of the conducted experiments}
+	\caption{Overview of the results of the experiments that were conducted.}
 	\label{tab:results}
 \end{longtable}
