@@ -1,0 +1,968 @@
+\chapter{Gaia-X Credentials}\label{ch:appendix-credentials}
+
+This appendix contains Gaia-X Credentials, that were created as part of the experiments conducted in this thesis.
+
+\section{Participant}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:31:38.012+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs",
+    "type": "gx:LegalParticipant",
+    "gx:legalName": "Acme Corporation",
+    "gx:legalRegistrationNumber": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/legal-registration-number.json#cs"
+    },
+    "gx:headquarterAddress": {
+      "gx:countrySubdivisionCode": "DE-BY"
+    },
+    "gx:legalAddress": {
+      "gx:countrySubdivisionCode": "DE-BY"
+    }
+  },
+  "proof": {
+    "created": "2024-08-27T07:31:38.746+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..xoMpx55vYkhGFn3iRJInsxidCMmcnWi8DbX4L4DK-G9AWYf4iD-TDBwiwV2NnxN_UxlWq8g05StNP4C5xN2l6R35-8l4zxIvhD4tqQufacyep9K4k1U7hLwBAkfi3BiKBrWp-B5rtS6-Q2Y7iyBKS_dSSr0fENJZbdeKrRDUVJV7u-wphjEb9hWBuZrKtN6ImL2jRZiP-BDSk8rftqf4CvdbtFtF1tOZRo8-AYZVfwLgUjvJY-OWp5fEnGyCqB5O7fVCnallYy2tXwcmwnlGxzqoa2fG7wvsoUdS4bE7TdLWamF7m1aCce6-T3OJLTvLAhPw7hwAnVqXGdgzNsowWQ"
+  }
+}
+\end{minted}
+
+\section{Legal Registration Number}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/legal-registration-number.json",
+  "issuer": "did:web:registration.lab.gaia-x.eu:v1",
+  "issuanceDate": "2024-08-27T07:31:37.991Z",
+  "credentialSubject": {
+    "@context": "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "type": "gx:legalRegistrationNumber",
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/legal-registration-number.json#cs",
+    "gx:vatID": "DE132507686",
+    "gx:vatID-countryCode": "DE"
+  },
+  "evidence": [
+    {
+      "gx:evidenceURL": "http://ec.europa.eu/taxation_customs/vies/services/checkVatService",
+      "gx:executionDate": "2024-08-27T07:31:37.991Z",
+      "gx:evidenceOf": "gx:vatID"
+    }
+  ],
+  "proof": {
+    "type": "JsonWebSignature2020",
+    "created": "2024-08-27T07:31:38.002Z",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:registration.lab.gaia-x.eu:v1#X509-JWK2020",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..cXwMJB-txkbF0SHWNfF663LhVNSiy88l5MUao-UI4RVoxq_GDhK187GLOG9EmtRM_NR_WuPJx74FflLUHX3ENfMWLWccNdNk4xtZx0lQkihxl9oTsEjDWbwedQ2XQjvLz00tMfWAKszxAO1YuhQIUGOIdMUc9A3aPMRc7U1ULGJBhYxYd4YeOzdnno8WQ-atDibiM26o9W7fmpoIUsRzFdc_BeHpKmDwiefMV5o0G-cCj40xvcjhpBLV1FM3znBmdC3bx6jOucObt7ob31IclnIE-VtyEDnngYeLyExZnvq6SsvODCr5uZSysCGwQ4eIm0xQlJZ_S6RwdJGPqGK-0A"
+  }
+}
+\end{minted}
+
+
+\section{Terms and Conditions}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": "VerifiableCredential",
+  "issuanceDate": "2024-08-27T07:31:35.866+00:00",
+  "credentialSubject": {
+    "type": "gx:GaiaXTermsAndConditions",
+    "gx:termsAndConditions": "The PARTICIPANT signing the Self-Description agrees as follows:\n- to update its descriptions about any changes, be it technical, organizational, or legal - especially but not limited to contractual in regards to the indicated attributes present in the descriptions.\n\nThe keypair used to sign Verifiable Credentials will be revoked where Gaia-X Association becomes aware of any inaccurate statements in regards to the claims which result in a non-compliance with the Trust Framework and policy rules defined in the Policy Rules and Labelling Document (PRLD).",
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/terms-and-conditions.json#cs"
+  },
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/terms-and-conditions.json",
+  "proof": {
+    "created": "2024-08-27T07:31:36.740+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..k3CBy5UwE2NScZwLPZcyY1Pv0Q-j9G-BVQa8G6tZY97pm8AiVq4Bak7ouNYqGqP2pc-q91uqzFSqS-iVQA1AmXorPIQ47hmsiRgw9MT1rZAy2QenKxjuAx940XLIhRFFjg_umfjD5IOun0AVF6xZtCz_3O90QGGCpoeJTrQTiesZfXx0BnE3lZBtsiOWALXRLR4ms290xG6tKYGIBhVhpfA4L0rRcgc0DGsCtP4nyKOvVGvOAwVUYf0WOoIbLDxp79qTUX0QWD894C70ZTBz-vRUKr4LhHlE9CEEdRwl4lP2IkO8gs7X-xLvzuaHD4S1p-B_PqNpIE0IJaMn94Krhw"
+  }
+}
+\end{minted}
+
+
+\section{Questionnaire Service Offering}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/service-offering.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:24.943+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/service-offering.json#cs",
+    "type": "gx:ServiceOffering",
+    "gx:name": "Questionnaires",
+    "gx:providedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    },
+    "gx:policy": "default: allow",
+    "gx:termsAndConditions": {
+      "gx:URL": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions",
+      "gx:hash": "85a3528a886c8c3db43cd169ddb20dbf6c90d007c356a5652d77764826c2f09d"
+    },
+    "gx:dataAccountExport": {
+      "gx:requestType": "API",
+      "gx:accessType": "digital",
+      "gx:formatType": "application/json"
+    },
+    "gx:aggregationOf": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-resource.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:25.860+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..lW8ntE31qcR1aoZQpLnVdQpLJJ5u-cwzdN1aUerxxFgc_icDObY6MhTJHyFKYKr5aaAGAkcP8laOvy84veI3xjTbkHVIu70OUVDFmhUbNZZd8sLow0phODenYDp-vUUmdNYQ4qIBT8j2B8FJLuqgMFdOBsDOaZ8mqF1tLI-g5sQ6eNFTo9S8r5UmMLq4sX2Uax1B0Eo4jLtNY10fik6Qd3Ij_YyfPXazEHtik5Ju9-aem6Zm5gU6wOwxAJsmxtt_xhK8JUbWNV32Vtw-B7jwKtUWvock2ptxZ9Ki7aeYdByN6T-o0h6rUwTUmTlWV1rf_r22wnLJYoAoc_lye8CqgA"
+  }
+}
+\end{minted}
+
+\section{Questionnaire Data Resource}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-resource.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:23.941+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-resource.json#cs",
+    "type": "gx:DataResource",
+    "gx:name": "Questionnaires",
+    "gx:description": "sample questionnaire description",
+    "gx:containsPII": false,
+    "gx:policy": [
+      "default: allow"
+    ],
+    "gx:license": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions"
+    ],
+    "gx:copyrightOwnedBy": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    ],
+    "gx:producedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    },
+    "gx:exposedThrough": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/instantiated-virtual-resource.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:24.942+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..OR0AV1HWHWum6KD6s9elCZemujCKe6G_y8CdWSxM5gl7WPD0pIxYuhPJaHVoZxPNuC7c_89BBwrnFtd8tVrMu9Z1cJthM7nuDZopck2GavnZtr9445HxsaEx5hPFsOfhxVHntb95Hqp4qAO7JhZTPU5MpDuBMivJ2v7_HCKuyjYTKo-nIE9UqlzgRjZX7FYr5NtH8Mq5wVhyo-qxaPWyxaCK0HXdtj5SxGX13QxZ1h76TTcJR470z3LMkRV_pq9Xk8LwClfAenYrxQdHsC3W2djfLeWuNPjkkJIhHtffAjJA9y816WCSHHPRzRuh8mX5ZjazVgqvqyEX2G3QuTcEfA"
+  }
+}
+\end{minted}
+
+
+\section{Questionnaire Software Resource}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/software-resource.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:28.904+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/software-resource.json#cs",
+    "type": "gx:SoftwareResource",
+    "gx:name": "Carecentive server",
+    "gx:copyrightOwnedBy": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+      }
+    ],
+    "gx:license": [
+      "default: allow"
+    ],
+    "gx:policy": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions"
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:29.672+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..Ig8ksdM4_G7r2GbAkTRZPZXC3Q2owygDbwvTQrqT9arR7fdjMUSqOJXeALB9K3qZMlatIpc48MfPWu9KazFRQdu_CEHDlClY4I8_2zMW64UK9oyD5G-sgdk2aZ6gZthALT57_M24CUqYIdQOAar46knzEldUuGHnI3iQ1RroZlLrBijJgqk-J0XaNG-KZ7NLP3P0DeHbQhbNS9MxdEk3B1CxNvLCHl-xTfEZGUkruwpensPUeW7jtuIPhRYUir8IUz8ma3v8OBJDKNrty6FxetmZZwykZw-z_jOKlBjKSSRTMhgys8f0Og5JtdtrNl9t8fwCakAekFxHl9JxcrNtcA"
+  }
+}
+\end{minted}
+
+\section{Questionnaire Instantiated Virtual Resource}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/instantiated-virtual-resource.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:29.673+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/instantiated-virtual-resource.json#cs",
+    "type": "gx:InstantiatedVirtualResource",
+    "gx:maintainedBy": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+      }
+    ],
+    "gx:hostedOn": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/software-resource.json#cs"
+    },
+    "gx:instanceOf": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-resource.json#cs"
+    },
+    "gx:tenantOwnedBy": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+      }
+    ],
+    "gx:serviceAccessPoint": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/service-access-point.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:30.527+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..Zdv7-dbI9dQa1TlecynwgYMHf6z7wQOwsNHgUUnN6igX6YIKPOVH60IrHgomIy-J2N5_JfFAZpP9fdLZGY1RNXrEJzAR3LJYh-B2kXNGQahtdbtPBGoavWFxVMHKO32UMTHyrqtj_z7-llGl3MgkeQ_3Cfsm0UD7z4kOPZq5lX00CbO2ydM79XRDQuQy04mfN-PsmthQKouk8rbV9uTHLCaFnE9uRCG00PorgHk15sxBo3xHLTsv-HzTUFaVXt549WDqQ5VLSZjcUlredyYAzna1j66ukSZCdpY4gvsedCmF9tC8LriUa-07rjXF4S3A-4MueDFJDyyDSEAA69UZWA"
+  }
+}
+\end{minted}
+
+
+\section{Questionnaire Service Access Point}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/service-access-point.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:30.528+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/service-access-point.json#cs",
+    "type": "gx:ServiceAccessPoint",
+    "gx:name": "/api/questionnaires",
+    "gx:host": "gaia-x-dev.simerda.dev",
+    "gx:protocol": "HTTP",
+    "gx:port": [
+      "443"
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:31.237+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..qkm0kncYx8NF0FKwtAbs2oPUTRj-cL26oUTupjmk9l2H2j0vSHcFTSW0kPPwiHcMDw7ZlVrhiexZfiHFvXJGfH1jUOwOBww-mUESN6_ip0YE-ySYFudP2fgmOb74vlrydv0ZysWyWi8TEACwh0EC2Tyy6fzl-Zpd_LEFcBWhyBCyD8-BXczrBFIIm858lC0gETJtesGvJF-wXrVvrQk-pXi2Ksm2VZSo05z9EW1JVVBG40edOFSU-GtlcCWgDy7pt7OHestXzoKAF1lSlvG_A0fPoIDEIsJ_GjZ_M5cdEzrOgh56D2r7WJ--mAbhVMuKRw7ym35NHkVQok_qPA3DmQ"
+  }
+}
+\end{minted}
+
+
+\section{Questionnaire Data Product Description}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "https://www.w3.org/ns/dcat.jsonld"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-product-description.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:25.862+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-product-description.json#cs",
+    "type": "gx:DataProductDescription",
+    "gx:providedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    },
+    "gx:policy": "default: allow",
+    "gx:termsAndConditions": {
+      "gx:URL": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions",
+      "gx:hash": "85a3528a886c8c3db43cd169ddb20dbf6c90d007c356a5652d77764826c2f09d"
+    },
+    "gx:dataAccountExport": {
+      "gx:requestType": "API",
+      "gx:accessType": "digital",
+      "gx:formatType": "application/json"
+    },
+    "gx:aggregationOf": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/dataset-description.json#cs"
+      }
+    ],
+    "dct:license": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions"
+    ],
+    "gx:title": "Questionnaires",
+    "gx:description": "sample questionnaire description",
+    "dct:issued": "2024-08-27T07:37:25.862+00:00",
+    "gx:obsoleteDateTime": "2025-01-01T12:00:00.000+00:00",
+    "gx:dataLicensors": [],
+    "gx:dataUsageAgreement": [],
+    "dct:identifier": "241de422-e7af-4ed4-8e30-2f6f07726b19"
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:26.965+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..AaKOAk0fvH_2PSSqFuovaSb87zm5klo3lGv8gVMOH5vohEckgsjoeObbdHEQRZbw5s6TPhhIkP9uAWz9KA1wigk2vjRvo1b9Pmwurk_6SG-fOp03tPyCH7fhAqnhvKbiiR7iZ3Cv7PS8al1pJWZWpSM_3ILQ1cW6Hv0FyJxeRfI6i93ckK0DCL0htQbTIUwBuDaTEJKnZh2vA1zVhXuKr4pXt1uk3oFgMnC63zc5E07XkJh_7Aum7INd3XSQWh3uayWsdRMfb2DSBeMkqTX9Tk3Veth7c_nX6fMc_cMj9JF1o9vQg-JRbGVsn0UyK4rPtYeV5THYJXo8a4mc9EjahQ"
+  }
+}
+\end{minted}
+
+\section{Questionnaire Dataset Description}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "https://www.w3.org/ns/dcat.jsonld"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/dataset-description.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:26.966+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/dataset-description.json#cs",
+    "type": "gx:DatasetDescription",
+    "dct:title": "Questionnaires",
+    "dct:distributions": [
+      {
+        "dct:title": "Questionnaires",
+        "dct:format": "application/json",
+        "gx:location": "",
+        "dct:issued": "2024-07-01T12:00:00.000+00:00",
+        "gx:expirationDateTime": "2025-01-01T12:00:00.000+00:00",
+        "dcat:language": [
+          "en"
+        ],
+        "dct:license": [
+          "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions"
+        ],
+        "gx:dataLicensors": [],
+        "gx:dataUsageAgreement": []
+      }
+    ],
+    "dct:identifier": "0a8e67ef-6939-4080-9c82-4e14ab4e3da6",
+    "dct:issued": "2024-07-01T12:00:00.000+00:00",
+    "gx:expirationDateTime": "2025-01-01T12:00:00.000+00:00",
+    "dct:license": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions"
+    ],
+    "gx:dataLicensors": [],
+    "gx:dataUsageAgreement": [],
+    "gx:exposedThrough": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/instantiated-virtual-resource.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:28.160+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..OBcUv115fcKgAnvcZqbHCD-wqIgxJU3YBzBsjQlz6RW9xiasRLt7cvzOp3cbv2jm8pSVrLMjEcrf59GIvKa56_B4_cfElQL5DKvi6xwmCC8f12p9mzXfShZKFpN7xP0Q2a0YbYYuFBLvC3CHPnE32-qyaWkHNwHLrYTsap0DQEUFuv4b62TkTO2UA-6e04h2N6eYv_Ld51nO7WmglVk4u1f4O0VWC_PckfRlGSdKaZ24SbN-DZ70ZAY5VkOKZ9PtrvLL5pEaa5mSvdIeZOfGGuqvFHWz2bxGwFq8z3GmI3gErViwjih1wbUC00Pmboemadx1iAcWcH97SE8ilU7p2Q"
+  }
+}
+\end{minted}
+
+\section{Questionnaire Data Usage}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-usage.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T07:37:28.162+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-usage.json#cs",
+    "type": "gx:DataUsage"
+  },
+  "proof": {
+    "created": "2024-08-27T07:37:28.903+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..FgqW1bDH1T3VjPN4VxBlIZx3VTgtEET8mxbWXqgNMsdQ-77fevbWFZo1VKHzpcxTtpUsx-YE2C5sB6FyEMC8kz1P6f2q7IR_aofvkosDmbD6cBW1blS3g9JRV_rbHWlrxR9BAIijfC6wuqukh44UYTyLrc-L617N279Og5tF-FePEtQkBQTWBOR0z8Sbze0w7jrOuhG67_FOuUt3duVhFEORiA-fawVq6odTuhk38tkijTLDdOHYo-Zoe_b-kQ39yArzIFYFnLxe6seigDk2vBr399z6_b8PaDvd8G4tdMLrOTpEmIao3bdx_vwaxIuumefpw6-bRZg6ueL776tGPw"
+  }
+}
+\end{minted}
+
+\section{Questionnaire Data Product Usage Contract}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/583819ec-7660-40c1-9f12-4a79cc550f8f.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T08:25:34.023+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/583819ec-7660-40c1-9f12-4a79cc550f8f.json#cs",
+    "type": "gx:DataProductUsageContract",
+    "gx:providedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    },
+    "gx:consumedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/data-consumer/participant.json#cs"
+    },
+    "gx:dataProduct": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-product-description.json#cs"
+    },
+    "gx:signers": [
+      {
+        "gx:participantRole": "Provider",
+        "gx:mandatory": "Yes",
+        "gx:legalValidity": "No"
+      },
+      {
+        "gx:participantRole": "Consumer",
+        "gx:mandatory": "Yes",
+        "gx:legalValidity": "No"
+      }
+    ],
+    "gx:termOfUsage": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/terms-and-conditions",
+    "gx:dataUsage": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/241de422-e7af-4ed4-8e30-2f6f07726b19/data-usage.json#cs"
+    }
+  },
+  "proof": [
+    {
+      "created": "2024-08-27T08:13:49.120Z",
+      "type": "JsonWebSignature2020",
+      "proofPurpose": "assertionMethod",
+      "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:data-consumer#JWK2020-RSA",
+      "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..uRSdQ6_ZkuMBsu59VCqWyAlPNytVF9It338rsL7hDJYCPj-hLFu7HCsGLNiidWY0pgh9kbygGX5bmFkSZwFZTlRvmwnWcwIHNA9bEiUgIpSozak1vEQR0iyNB9cbB8jXNWbvpIEdHsl2nBorizWjXxx3aU2HcOWTXBVr0Qm_nDMpgHZ9Jbd_dxLYL5EVMOCf_NkEsrguYogJIjFjEJQFLVpmCRj7wmZJa_mgO8_-bVZVlpWDYR7hZJWDWUCB1Tq5lHdWOYWiI4f0ET8nPa1g8ykFKx6YpGC88ZaWJ9d4ww5olegTc2fr4xwYxMl3VXVuZndufuVhziSnf84CwYLSKQ"
+    },
+    {
+      "created": "2024-08-27T08:54:07.626+00:00",
+      "type": "JsonWebSignature2020",
+      "proofPurpose": "assertionMethod",
+      "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+      "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..YrFJkYPdV7e7ykYrs6PnkEpDWIl3gBiUGhoSd6COpIr_7D6vjTa-XaUtHKZmki1skIfxFxWZtcJcocsghCq3UbORkj70KM9d4QSzjIOH94HpTzcpCqcuUO8aCwRaXAyuk9Ikz1KjoYJbLjzhXm1HX-fboFWq0UD8M8zf3IG50x99eLMTW0FfjIyIhNzzCokl1DybSMb6shavdZTkeObKdhsfA-u2MgaJNN5DmvSv3IOB93BvDRDLRlUTywBPp_zJM4UqCaKNS34VKAXFtzEyCHNFrrgowTe0LwAIElv8xQTrTafvCZUDUGoAwviAPMx16rpEG79NpiVjRYGflr1LzQ"
+    }
+  ]
+}
+\end{minted}
+
+\section{Withings Service Offering}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/service-offering.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:35.755+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/service-offering.json#cs",
+    "type": "gx:ServiceOffering",
+    "gx:name": "Withings",
+    "gx:providedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    },
+    "gx:policy": "default: allow",
+    "gx:termsAndConditions": {
+      "gx:URL": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions",
+      "gx:hash": "85a3528a886c8c3db43cd169ddb20dbf6c90d007c356a5652d77764826c2f09d"
+    },
+    "gx:dataAccountExport": {
+      "gx:requestType": "API",
+      "gx:accessType": "digital",
+      "gx:formatType": "application/json"
+    },
+    "gx:aggregationOf": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-resource.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:36.542+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..D9yKRn3PtZGGU0udRO97s2J8DabvXRzNyZDf7JrlSv4-HvWN1izHh_vpFhpuPne6DvLQj3xqfbKekSnc1bMJq8SgkLIT1Z1VxRJRy6QjnlMo801t9yVPciPxCOsB8N1BoJuRZW4r0GMmrx8-dHH6H0s1uiGZxqFyaG5wodeEtDmnt7Ec8IIPTtdXbdMPnh34duaO4OUBoqYye1aSiL36C_XonFJDXxMrfB6VYFrTWBuIeRFpITegji5t44tajWLTtLfvuI2J4quXmCCRuCHQTUasuSW8ikgnyl0_G8NAVaMijRpttN7dCUs9a8jRUbE20Z6J3RYrRgbq_NPqZ9HzvQ"
+  }
+}
+\end{minted}
+
+\section{Withings Data Resource}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-resource.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:34.906+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-resource.json#cs",
+    "type": "gx:DataResource",
+    "gx:name": "Withings",
+    "gx:description": "sample withings description",
+    "gx:containsPII": false,
+    "gx:policy": [
+      "default: allow"
+    ],
+    "gx:license": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions"
+    ],
+    "gx:copyrightOwnedBy": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    ],
+    "gx:producedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    },
+    "gx:exposedThrough": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/instantiated-virtual-resource.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:35.754+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..xtszQPuHiZ7qztSo2rBIJCW_O6BKbuXmacqMJIL_VhB1PySU1J3lq-87p8oqBQmH4Pt_gRgEPB8RZACUWJijDlry2Oha9dLjeYM0_7DOvN3DhoKMoP4aSiEppAeL5Gvud1sPGcorOr_ngBko-rF_cmEux5ZrQ3I7vF3Z_wbrDH0QXWrAPcJ6OyUO0HoHpnM_UTIGrRuVDKrQHslph1dVeqw45BxtPd2Pu3vfKkcQhOAT3207H2nE-OaeStY9JE9deOfoP620bJE3DtbuWAjuwtF2criJ64vUAG2v_pXE4EAdlCcwoLI7p9eq_rEU9gdjRayypjQpgxg0nBoPZi3Okw"
+  }
+}
+\end{minted}
+
+
+\section{Withings Software Resource}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/software-resource.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:39.887+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/software-resource.json#cs",
+    "type": "gx:SoftwareResource",
+    "gx:name": "Carecentive server",
+    "gx:copyrightOwnedBy": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+      }
+    ],
+    "gx:license": [
+      "default: allow"
+    ],
+    "gx:policy": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions"
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:40.636+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..ZAA17lYFD6sti9q_h4FKw5zJ0TZ0P0b7DDlZ80y1nPiJbdyPo9Y6vphQU7o136iu2sjocaZvzV100mzbS2PzdhnT7PEI1T6tYxKK4eC347sBzgoEdzQEQshBRhGb5p9zwu5kRof39Dapu33H7VE-Wq647VbHVxuGiWL2nV1jImDnLwP8AyT2Q6DAUsEwo5AnNfkgorG8VDn3qrz-cje26hJXYPBmsoU_DqSrFHzEhEzm5dHL_7F7LUukSNc6TNpM6ZbhUlWCpdOkTFrdjARPYgpf9OfRcCGBZMl9bkHZ7bQ8uEo9Uu9hiefL-8yHC17s-XNP56oLQbmPVxjbl932ew"
+  }
+}
+\end{minted}
+
+\section{Withings Instantiated Virtual Resource}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/instantiated-virtual-resource.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:40.639+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/instantiated-virtual-resource.json#cs",
+    "type": "gx:InstantiatedVirtualResource",
+    "gx:maintainedBy": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+      }
+    ],
+    "gx:hostedOn": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/software-resource.json#cs"
+    },
+    "gx:instanceOf": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-resource.json#cs"
+    },
+    "gx:tenantOwnedBy": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+      }
+    ],
+    "gx:serviceAccessPoint": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/service-access-point.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:41.365+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..T5STH4JAo2dEW092jmLGotTnrKhQsEk1jLVn2pzvDS3rwSnUJJzhB1jDCzTidRU9E-G7TGqS7-Q-FblgIPNYiHWnqHxu_eVlbT2ujRMpkILUSrfBEfrXjjhLYCQs3Zt3JRhC4nUnXI56cs6hgU7R1rZs_IC4E5M4puhpHN4k_5xY_yxqorCihSUCnQYdGcLcj9AdhRAP5fN6lIwgamJGerVcGO67iTx6tviJvYFPGOlV6o7AUlwF_R7exIuuMDzMDsoojaDhOq4W8QO79VwKM4S9DOcV7aBvh8e0hlienrOQEHZ4Iyaa-2vN7BXkmgosMBYLqM-AYZdSNZia-KqNJA"
+  }
+}
+\end{minted}
+
+
+\section{Withings Service Access Point}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/service-access-point.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:41.365+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/service-access-point.json#cs",
+    "type": "gx:ServiceAccessPoint",
+    "gx:name": "/api/measurements",
+    "gx:host": "gaia-x-dev.simerda.dev",
+    "gx:protocol": "HTTP",
+    "gx:port": [
+      "443"
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:42.100+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..ryrbMPoQMr8KzaFNrOHYLv4UzIPEKwW5FLAKveVg4ydWVJbm2qcF68eyEz4MSKIz9VzncSHeWFAf7ZK3pQE_oUei72Yk4kwIi0MU_lJYOrEfYSq_daUhAaSo16d3wv1BZ0uGVruxKkvfig8Upk-3esj46akbM68BKSh9g5srpuVwITV0VZi_Xmd9JkmC7gSbtAV8bOVzRSjr_Vtf82TLYL1jmS79kZaymmCYwXrJzavucDzaBKgfk9SxH-GIcyXW3YHe2C_WJwC0Qt1XA4SesEc_L8OCLb_ikh5EEqxg58IafD67DbMg3FnXhXUaewbbOatiCQTIqW4BvVam3eguFg"
+  }
+}
+\end{minted}
+
+
+\section{Withings Data Product Description}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "https://www.w3.org/ns/dcat.jsonld"
+  ],
+  "type": "VerifiableCredential",
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-product-description.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:36.543+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-product-description.json#cs",
+    "type": "gx:DataProductDescription",
+    "gx:providedBy": {
+      "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+    },
+    "gx:policy": "default: allow",
+    "gx:termsAndConditions": {
+      "gx:URL": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions",
+      "gx:hash": "85a3528a886c8c3db43cd169ddb20dbf6c90d007c356a5652d77764826c2f09d"
+    },
+    "gx:dataAccountExport": {
+      "gx:requestType": "API",
+      "gx:accessType": "digital",
+      "gx:formatType": "application/json"
+    },
+    "gx:aggregationOf": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/dataset-description.json#cs"
+      }
+    ],
+    "dct:license": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions"
+    ],
+    "gx:title": "Withings",
+    "gx:description": "sample withings description",
+    "dct:issued": "2024-08-27T10:01:36.543+00:00",
+    "gx:obsoleteDateTime": "2026-02-13T20:15:41.000+00:00",
+    "gx:dataLicensors": [],
+    "gx:dataUsageAgreement": [],
+    "dct:identifier": "0b6cead9-d6c5-49da-b9ad-541af02d9b08"
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:37.639+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..vcIXu2kCtd79-qpDqCVX504qlE6AzLc5A-KH6_Mhl8Qt56cyn2V4OFZzRudXWDU0hh5ZksNABT08nCs4rbwJ6shbWoxuXnwMPBATFixuHwgIr4MPOkAybShagjf0zTfkfOgZJPcfwqua0YC1zeQW00hXrDlN-GNl6cmzXFy7SFO1eriC0po2xRLYWpqwl5r6Cj9CQ-YSffS58vw0xcOh-b90JtIAIQxIH7u2NYqFhtoQ2SEOcnCbxVjjGlPwHVySAmFOAZbJrJzTZ-KGqoTxOft4511-lcesGM69vh85R54jFWj84Tied4UVEE20LnWbJ-_kZrHdu3wvLkQowodIIg"
+  }
+}
+\end{minted}
+
+\section{Withings Dataset Description}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#",
+    "https://www.w3.org/ns/dcat.jsonld"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/dataset-description.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:37.640+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/dataset-description.json#cs",
+    "type": "gx:DatasetDescription",
+    "dct:title": "Withings",
+    "dct:distributions": [
+      {
+        "dct:title": "Withings",
+        "dct:format": "application/json",
+        "gx:location": "",
+        "dct:issued": "2024-08-01T14:32:51.000+00:00",
+        "gx:expirationDateTime": "2026-02-13T20:15:41.000+00:00",
+        "dcat:language": [
+          "en"
+        ],
+        "dct:license": [
+          "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions"
+        ],
+        "gx:dataLicensors": [],
+        "gx:dataUsageAgreement": []
+      }
+    ],
+    "dct:identifier": "41e651f4-4e00-4656-a901-e89c4c06768c",
+    "dct:issued": "2024-08-01T14:32:51.000+00:00",
+    "gx:expirationDateTime": "2026-02-13T20:15:41.000+00:00",
+    "dct:license": [
+      "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions"
+    ],
+    "gx:dataLicensors": [],
+    "gx:dataUsageAgreement": [],
+    "gx:exposedThrough": [
+      {
+        "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/instantiated-virtual-resource.json#cs"
+      }
+    ]
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:39.088+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..p6WXZvM411ASxFOBZvn-m2LfmnRkjMkUHO4CfRymz4tJJyW-5BShwvo-7glsgpdcN5GYV_fFaJNygARrwOATPiw2_zug-4EFBhI7ZQUJIYJNN7_-P2OUtNen4R9f7JqDz5ek5p1gUaaaHqkkKBH-b2adTpkJrD6DgzzoYq-zTMoXgLMmH4YeVrrlQ9fMnja1Y_6H6-nObCpDxbS9Ip9ZJdbleypfRVkA-OKuPE3DtwxGBv7iZrjR1xT_z9Aq6kFJ-TFEpTeyhR8_uVs8e4EKaWnB9RnRsRsu6snaO4xmZkPtA8YckEQ5dWr28cck2x9YRKDn2WG9BVz6-3mgrq5Ojw"
+  }
+}
+\end{minted}
+
+\section{Withings Data Usage}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+  ],
+  "type": [
+    "VerifiableCredential"
+  ],
+  "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-usage.json",
+  "issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+  "issuanceDate": "2024-08-27T10:01:39.089+00:00",
+  "credentialSubject": {
+    "id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-usage.json#cs",
+    "type": "gx:DataUsage"
+  },
+  "proof": {
+    "created": "2024-08-27T10:01:39.887+00:00",
+    "type": "JsonWebSignature2020",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+    "jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..lfQs13F63swuU1nOWNYtowu4Jz9u8rf6MgrbKlBYR7R8qAYi4O9wb2SWFIJvHUI7QqZpvQ05rJO8hjhqhCwZ_fuh_TEGt3Ec1HH5MY49gmZTZetUaDhdNY5Mihi2i7hlat4D8wYwXjU0NWXIlMZGk0H8Xg3AbEspRCm2ZfFEXQz0ZjqpignOaZlXUggxD8AVw3Jjdva7eGLuMEASQBYkAwR3eorPX2_8fdcXhaI3EbhfIsvTF6Ph6bBc60UbTq4gPMkPD1XBimtbjmgJIOLoVu0UB-7bOd0-UFZbGYOEYZW-Lppnryr3Upt3fyCbagw26avlmMwUxf9kF7zm9BZVIA"
+  }
+}
+\end{minted}
+
+\section{Withings Data Product Usage Contract}
+
+\begin{minted}[breaklines,breakanywhere]{json}
+{
+	"@context": [
+		"https://www.w3.org/2018/credentials/v1",
+		"https://w3id.org/security/suites/jws-2020/v1",
+		"https://registry.lab.gaia-x.eu/development/api/trusted-shape-registry/v1/shapes/jsonld/trustframework#"
+	],
+	"type": [
+		"VerifiableCredential"
+	],
+	"id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/38913c55-622b-42e5-8784-ac13f14d31ed.json",
+	"issuer": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp",
+	"issuanceDate": "2024-08-27T10:07:34.840+00:00",
+	"credentialSubject": {
+		"id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/38913c55-622b-42e5-8784-ac13f14d31ed.json#cs",
+		"type": "gx:DataProductUsageContract",
+		"gx:providedBy": {
+			"id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/participant.json#cs"
+		},
+		"gx:consumedBy": {
+			"id": "https://gaia-x-dev.simerda.dev/gaia-x/data-consumer/participant.json#cs"
+		},
+		"gx:dataProduct": {
+			"id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-product-description.json#cs"
+		},
+		"gx:signers": [
+			{
+				"gx:participantRole": "Provider",
+				"gx:mandatory": "Yes",
+				"gx:legalValidity": "No"
+			},
+			{
+				"gx:participantRole": "Consumer",
+				"gx:mandatory": "Yes",
+				"gx:legalValidity": "No"
+			}
+		],
+		"gx:termOfUsage": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/terms-and-conditions",
+		"gx:dataUsage": {
+			"id": "https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/0b6cead9-d6c5-49da-b9ad-541af02d9b08/data-usage.json#cs"
+		}
+	},
+	"proof": [
+		{
+			"created": "2024-08-27T10:11:20.672Z",
+			"type": "JsonWebSignature2020",
+			"proofPurpose": "assertionMethod",
+			"verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:data-consumer#JWK2020-RSA",
+			"jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..Y8Jp74TUP3b2kvLmrszODY-AJnNGQxRHYA37mcKulzqvykPMBcPl8oMqrz5-7BsfUZCXM1qkyvfG3UZWormFi0xGKCfo0OUJ64Gw3QvNL9IYDtFwY5xFWztPdCFyqwZG_0Oxtt6a-tIZ1IK9Lcd2aXQqZKUzRR_lZ10n1dMqxocz2nxUwDsBjvxK5IRPdImg1b4O-iseHPFFG9HEfaAOsfn0s5i3uqtyTbmpOoyBIlym9i1wnkSYAnvBJzgmnG0lT7CbQ7vfl5sFDfvVN9b6zu09tNH68wItAc5iDQifIvb0us8uROTp4vcjytQqjlfEbokvKjINKLd8RGAMBw4cAA"
+		},
+		{
+			"created": "2024-08-27T10:13:58.328+00:00",
+			"type": "JsonWebSignature2020",
+			"proofPurpose": "assertionMethod",
+			"verificationMethod": "did:web:gaia-x-dev.simerda.dev:gaia-x:acme-corp#JWK2020-RSA",
+			"jws": "eyJhbGciOiJQUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..SW0qwXGRhQ0iCc5iG3vZvJn5k3Wdqf9i1w1uENAsGhr0tpICcmdM4G4FzOIv8V4NUcF4hGvE7p3z3sKAJds-eYzcr0keXWvkxducJTfVuwZNQ4Scpm_9FnltLxt-LnLPK837laEl_hBsoeZPB8399ciAfoi1BUZ5pVCgcTf52ZlSR7kH2eKVqjEfUd5T8IeOX50qYRiqaPlkHtUahxxH6pakTiBnTxCdbaCHVOB15bcJLvJG7J3bKGP8iQyC5GycAWeI9-rA3QlqNB-es_91L9tqPEI-GAtmYso6H1gQKrx6xzkYN0OkhYEyLwkacvWf3qvkXE5J--xlFa_4F0eS4Q"
+		}
+	]
+}
+\end{minted}
