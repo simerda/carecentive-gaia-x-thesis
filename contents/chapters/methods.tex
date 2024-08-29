@@ -200,7 +200,6 @@ When the consumer claims the data contract, the contract moves to the state ``\t
 
 Before the data contract reaches the ``\texttt{FINALIZED}'' state, a Carecentive admin can also reject the contract proposal by calling the ``\texttt{/api\-/admin\-/gaia-x\-/data-product\--contracts\-/:dataProduct\-ContractId}'' endpoint using the \texttt{DELETE} method.
 This action moves the contract to the ``\texttt{REJEC\-TED}'' state, the second terminal state, and an alternative way to conclude the data contracting phase.
-%TODO: add UML diagrams
 
 \subsection{Data Consumption}\label{subsec:data-consumption}
 
@@ -254,8 +253,7 @@ Let's go over the specific classes that handle the application logic --- \textit
     It uses the \texttt{GaiaXService} for Credential-related operations, the \texttt{ThirdPartyTokenService} for issuing access tokens, and the \texttt{ParticipantStorage} helper for reading Participant's certificate for producer signature verification.
 \end{itemize}
 
-Automated testing was employed to discover potential issues and ensure correct behavior when introducing new changes in the code.
-%TODO: more info on testing
+Jest\footnote{\url{https://jestjs.io/}}, a popular JavaScript testing framework, was used for automated testing to discover potential issues and ensure correct behavior when introducing new changes in the code.
 
 \section{Experiments}\label{sec:experiments}
 
@@ -316,6 +314,7 @@ Content-Type: application/json
   "gx:vatID": "DE132507686"
 }
     \end{minted}
+    \captionsetup{width=\textwidth}
     \caption{LegalRegistrationNumber request to the Gaia-X Notary service.}\label{fig:test_case_1_notary}
 \end{figure}
 
@@ -325,7 +324,7 @@ Next, a request to the Gaia-X Compliance service is made by performing the reque
 
 \begin{figure}[h]
     \centering
-    \begin{minted}[bgcolor=LightGray,breaklines]{http}
+    \begin{minted}[bgcolor=LightGray,breaklines,escapeinside=||]{http}
 POST https://compliance.lab.gaia-x.eu/v1/api/credential-offers?vcid=https://gaia-x-dev.simerda.dev/gaia-x/acme-corp/compliance.json HTTP/1.1
 Content-Type: application/json
 
